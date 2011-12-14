@@ -1,25 +1,31 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <a href="{DISCOUNT_URL}">Акции магазина</a> &gt; <strong>{PROMOTIONAL_CAMPAIGN_NAME}</strong></p>
+<div class="contentTbBodyNavigate">
+<a href="http://{NET_DOMAIN}/">Главная</a> &raquo; <a href="{DISCOUNT_URL}">Акции магазина</a> &raquo; <span>{PROMOTIONAL_CAMPAIGN_NAME}</span>
+</div>
 
 <h1>{PROMOTIONAL_CAMPAIGN_NAME}</h1>
 
+ <!-- Описание категории -->
+{% IF PROMOTIONAL_CAMPAIGN_DESCRIPTION_LARGE %}
+  <div class="htmlDataBlock">
+    {PROMOTIONAL_CAMPAIGN_DESCRIPTION_LARGE}
+  </div>
+{% ENDIF %}
+
 <table class="promotionCampaignInfo">
-<tr>
-  <td class="cell1"><p><span>Сроки проведения акции:</span></p></td>
-  <td class="cell2">{PROMOTIONAL_CAMPAIGN_BEGINNING_TIME | date("d.m.Y")} - {PROMOTIONAL_CAMPAIGN_EXPIRED_TIME | date("d.m.Y")}</td>
-</tr>
-<tr>
-  <td class="cell1"><p><span>Размер скидки:</span></p></td>
-  <td class="cell2">{PROMOTIONAL_CAMPAIGN_DISCOUNT_PERCENTAGE} %</td>
-</tr>
+  <tr>
+    <td class="cell1"><p><span>Сроки проведения акции:</span></p></td>
+    <td class="cell2">{PROMOTIONAL_CAMPAIGN_BEGINNING_TIME | date("d.m.Y")} - {PROMOTIONAL_CAMPAIGN_EXPIRED_TIME | date("d.m.Y")}</td>
+  </tr>
+  <tr>
+    <td class="cell1"><p><span>Размер скидки:</span></p></td>
+    <td class="cell2">{PROMOTIONAL_CAMPAIGN_DISCOUNT_PERCENTAGE} %</td>
+  </tr>
 </table>
 
-<div class="htmlDataBlock">
-  {PROMOTIONAL_CAMPAIGN_DESCRIPTION_LARGE}
-</div>
 
-<h3>Товары участвующие в акции</h3>
+<h3>Товары участвующие в акции</h3><br />
 
-<!-- Goods list -->
+<!-- Список товаров -->
 <table>
   <tr>
     {% IF goods_empty %}
@@ -30,22 +36,25 @@
           <div class="goodsListItemBlock withBorder cornerAll">
     		    <div class="goodsListItemImage"><a href="{goods.URL}"><img src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-small.png{% ELSE %}{goods.IMAGE_SMALL}{% ENDIF %}" alt="{goods.NAME}" /></a></div>
     		    <h3 class="goodsListItemName"><a href="{goods.URL}">{goods.NAME}</a></h3>
-  		      <a href="{goods.URL_MIN_PRICE_NOW}">{goods.MIN_PRICE_NOW | money_format}</a>
-    		    {% IF goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>goods.MIN_PRICE_NOW %}
-              <br /><a href="{goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
-            {% ELSEIF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW %}
-              <br /><a href="{goods.URL_MIN_PRICE_OLD}" class="lineThrough">{goods.MIN_PRICE_OLD | money_format}</a>
-            {% ENDIF %}
+    		    <div class="goodsListItemPriceNew">
+      		    <a href="{goods.URL_MIN_PRICE_NOW}">{goods.MIN_PRICE_NOW | money_format}</a>
+      		  </div>  
+      		  <div class="goodsListItemPriceOld">
+    		      {% IF goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>goods.MIN_PRICE_NOW %}
+                <a href="{goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
+              {% ELSEIF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW %}
+                <a href="{goods.URL_MIN_PRICE_OLD}" class="lineThrough">{goods.MIN_PRICE_OLD | money_format}</a>
+              {% ENDIF %} 
+    		    </div>
           </div>
         </td>
-    		{goods.index | is_divided("4","</tr><tr>","")}
-    	{% ENDFOR goods %} 
+    		{goods.index | is_divided("5","</tr><tr>","")}
+    	{% ENDFOR goods %}
   	{% ENDIF %}
   </tr>
 </table>
-<!-- end Goods list -->
 
-<!-- Pages -->
+<!-- Страницы -->
 <div>
   {% IF show_pages %}
   <div class="square_pages">
@@ -60,7 +69,6 @@
   </div>
   {% ENDIF %}
 </div>
-<!-- end Pages -->
 
 <!-- Короткое SEO-описание -->
 {% IF PROMOTIONAL_CAMPAIGN_SEO_DESCRIPTION_SHORT %}

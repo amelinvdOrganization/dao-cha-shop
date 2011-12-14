@@ -1,8 +1,9 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> 
-  &gt; <strong>Результат поиска по запросу: &laquo;{SEARCH_QUERY}&raquo;</strong>
-</p>
+<div class="contentTbBodyNavigate">
+  <a href="http://{NET_DOMAIN}/">Главная</a> &raquo; Результат поиска по запросу: &laquo;{SEARCH_QUERY}&raquo;
+</div>
 
 <h1>Результат поиска по запросу: &laquo;{SEARCH_QUERY}&raquo;</h1>
+
 
 <table>
   
@@ -58,7 +59,7 @@
           
           <!-- Если список товаров пуст -->
           {% IF goods_empty %}
-            <td><h3>К сожалению, по Вашему запросу ничего не найдено</h3></td>
+            <td><h3>Ничего не найдено</h3></td>
           <!-- Если ничего и не искали -->
           {% ELSEIF search_query_empty %}
             <td><h3>Пустой запрос</h3></td>
@@ -81,7 +82,7 @@
           		    </div>
                 </div>
               </td>
-          		{goods.index | is_divided("4","</tr><tr>","")}
+          		{goods.index | is_divided("5","</tr><tr>","")}
           	{% ENDFOR goods %}
         	{% ENDIF %}
         </tr>

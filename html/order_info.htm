@@ -1,7 +1,7 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <a href="{CART_URL}" title="Перейти в корзину">Корзина</a> &gt; <strong>Заказ успешно оформлен.</strong></p>
 <div class="orderData cornerAll">
   <h3>Ваш заказ успешно оформлен!</h3>
   <div class="orderDataInfo">
+
     <table class="orderDataTable">
       <thead>
         <tr>
@@ -19,13 +19,14 @@
         </tr>
         <tr>
           <td class="cell1"><p><span>Сумма заказа:</span></p></td>
-          <td class="cell2">
-            {ORDER_SUM | money}
-            {% IF ORDER_SUM_WITHOUT_DISCONT != ORDER_SUM %}
-              <br /><span style="color:#888888;">{ORDER_SUM_WITHOUT_DISCONT | money("i")} без учета скидки</span>
-            {% ENDIF %}
-          </td>
+          <td class="cell2">{ORDER_SUM | money}</td>
         </tr>
+        {% IF ORDER_SUM_WITHOUT_DISCONT != ORDER_SUM %}
+          <tr>
+            <td class="cell1"><p><span>Сумма заказа без учета скидки:</span></p></td>
+            <td class="cell2"><s>{ORDER_SUM_WITHOUT_DISCONT | money("i")}</s></td>
+          </tr>
+        {% ENDIF %}
         <tr>
           <td class="cell1"><p><span>Статус оплаты:</span></p></td>
           <td class="cell2">{% IF ORDER_IS_PAYMENT=1 %}оплачен{% ELSEIF ORDER_IS_PAYMENT=2 %}Оплачен частично{% ELSE %}не оплачен{% ENDIF %}</td>
@@ -94,9 +95,7 @@
           <td class="cell2">{ORDER_DELIVERY_COMMENT | nl2br}</td>
         </tr>
         {% ENDIF %}
-        <tr>
-          <td colspan="2" style="height:2em;">&nbsp;</td>
-        </tr>
+        
       </tbody>
       
       <!-- Позиции заказа -->

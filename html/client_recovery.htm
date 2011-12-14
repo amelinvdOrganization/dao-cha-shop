@@ -1,52 +1,55 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Восстановление пароля</strong></p>
-<h1>Восстановление пароля</h1>
+<div class="page cornerAll">
+  <h1 class="pageHeader">Восстановление пароля</h1>
+  <div class="pageContent">
 
-<!-- Контент -->
-<form action="{USER_RECOVERY_URL}" method="post" class="clientForm">
-  <div>
-    <input type="hidden" name="hash" value="{HASH}" />
-    {% IF FORM_NOTICE %}
-      <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
-    {% ENDIF %}
-    <table>
-      
-      <!-- Тело таблицы. Форма авторизации -->
-      <tbody>
-        <tr>
-          <td><label for="sites_client_mail">Email</label></td>
-          <td><input id="sites_client_mail" name="form[sites_client_mail]"  value="{FORM_SITES_CLIENT_MAIL}" maxlength="255" class="required email cornerAll"/></td>
-          <td class="ceil3 valignMiddle" rowspan="2">
-            <div class="alignCenter" style="display:none;" id="caps_lock"> 
-            	<img src="{ASSETS_IMAGES_PATH}warningCapslock.png"><br />
-            	<strong>Caps Lock включен.</strong><br />
-            	Пароль может быть введен неверно.
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_pass">Придумайте новый пароль</label></td>
-          <td>
-            <input id="sites_client_pass" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="required cornerAll" /><br />
-            {% IFNOT user_agent_ie %}
-            <div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
-            {% ENDIF %}
-          </td>
-        </tr>
-      </tbody>
+    <form action="{USER_RECOVERY_URL}" method="post" class="clientForm">
+      <div>
+        <input type="hidden" name="hash" value="{HASH}" />
+        {% IF FORM_NOTICE %}
+          <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
+        {% ENDIF %}
+        <table>
+          
+          <!-- Тело таблицы. Форма авторизации -->
+          <tbody>
+            <tr>
+              <td><label for="sites_client_mail">Email</label></td>
+              <td><input id="sites_client_mail" name="form[sites_client_mail]"  value="{FORM_SITES_CLIENT_MAIL}" maxlength="255" class="required email cornerAll"/></td>
+              <td class="ceil3 valignMiddle" rowspan="2">
+                <div class="alignCenter" style="display:none;" id="caps_lock"> 
+                	<img src="{ASSETS_IMAGES_PATH}warningCapslock.png"><br />
+                	<strong>Caps Lock включен.</strong><br />
+                	Пароль может быть введен неверно.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_pass">Придумайте новый пароль</label></td>
+              <td>
+                <input id="sites_client_pass" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="required cornerAll" /><br />
+                {% IFNOT user_agent_ie %}
+                <div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
+                {% ENDIF %}
+              </td>
+            </tr>
+          </tbody>
 
-      <!-- Низ таблицы. Кнопка отправки формы -->
-      <tfoot>
-        <tr>
-          <td colspan="3"><input type="submit" value="Сменить пароль" /></td>
-        </tr>
-        <tr>
-          <td colspan="3">
-            <a href="{USER_REGISTER_URL}">Регистрация</a> | <a href="{USER_LOGIN_URL}">Вход с паролем</a>
-          </td>
-        </tr>
-      </tfoot>
+          <!-- Низ таблицы. Кнопка отправки формы -->
+          <tfoot>
+            <tr>
+              <td colspan="3"><input type="submit" value="Сменить пароль" /></td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <a href="{USER_REGISTER_URL}">Регистрация</a> | <a href="{USER_LOGIN_URL}">Вход с паролем</a>
+              </td>
+            </tr>
+          </tfoot>
 
-    </table>
+        </table>
+      </div>
+    </form>
+
   </div>
-</form>
-<!-- end Контент -->
+</div>
+

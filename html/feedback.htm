@@ -1,28 +1,31 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Связь с администрацией</strong></p>
-<h1>Связь с администрацией</h1>
-
-<form method="post" action="{FEEDBACK_URL}" class="feedbackForm" enctype="multipart/form-data">
-  <div>
-    <input type="hidden" name="hash" value="{HASH}" />
-  
-    {% IF FORM_SEND_OK %}
-      <h3 class="green">Ваше сообщение успешно отправлено администрации магазина</h3>
-      <a href="http://{NET_DOMAIN}/">Перейти на главную</a>
-    {% ELSE %}
-      {% IF FORM_NOTICE %}<h3 class="red">{FORM_NOTICE | nl2br}</h3><br />{% ENDIF %}
-      <label for="feedback_name">Представьтесь, пожалуйста</label>
-      <input id="feedback_name" name="form[feedback_name]" value="{FORM_FEEDBACK_NAME}" maxlength="50" class="input required" /><br /><br />
-  
-      <label for="feedback_еmail">Email для обратной связи</label>
-      <input id="feedback_еmail" name="form[feedback_email]" value="{FORM_FEEDBACK_EMAIL}" maxlength="255" class="input required email" /><br /><br />
+<div class="page cornerAll">
+  <h1 class="pageHeader">Связь с администрацией</h1>
+  <div class="pageContent">
+    <form method="post" action="{FEEDBACK_URL}" class="feedbackForm" enctype="multipart/form-data">
+      <div>
+        <input type="hidden" name="hash" value="{HASH}" />
+        
+        {% IF FORM_SEND_OK %}
+          <h2 class="green">Ваше сообщение успешно отправлено администрации магазина</h2>
+          <br /><br /><a href="http://{NET_DOMAIN}/">Перейти на главную</a>
+        {% ELSE %}
+          {% IF FORM_NOTICE %}<h2 class="red">{FORM_NOTICE | nl2br}</h2><br />{% ENDIF %}
     
-      <label for="feedback_message">Текст сообщения</label>
-      <textarea id="feedback_message" name="form[feedback_message]" cols="100" rows="10" class="required">{FORM_FEEDBACK_MESSAGE}</textarea><br /><br />
-  
-      <label for="feedback_file">Прикрепить файл</label>
-      <input id="feedback_file" type="file" name="form[assets_file]" value="" /><br /><br />
+          <label for="feedback_name">Представьтесь, пожалуйста</label>
+          <input id="feedback_name" name="form[feedback_name]" value="{FORM_FEEDBACK_NAME}" maxlength="50" class="input required" /><br /><br />
+      
+          <label for="feedback_еmail">Email для обратной связи</label>
+          <input id="feedback_еmail" name="form[feedback_email]" value="{FORM_FEEDBACK_EMAIL}" maxlength="255" class="input required email" /><br /><br />
+        
+          <label for="feedback_message">Текст сообщения</label>
+          <textarea id="feedback_message" name="form[feedback_message]" cols="100" rows="10" class="required">{FORM_FEEDBACK_MESSAGE}</textarea><br /><br />
+      
+          <label for="feedback_file">Прикрепить файл</label>
+          <input id="feedback_file" type="file" name="form[assets_file]" value="" /><br /><br />
 
-      <input type="submit" class="button_med" value="Отправить"/>
-    {% ENDIF %}
+          <input type="submit" class="button_med" value="Отправить"/>
+        {% ENDIF %}
+      </div>
+    </form>
   </div>
-</form>
+</div>

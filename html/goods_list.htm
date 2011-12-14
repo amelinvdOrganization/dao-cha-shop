@@ -1,17 +1,18 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> 
+<div class="contentTbBodyNavigate">
+  <a href="http://{NET_DOMAIN}/">Главная</a> 
 
+  <!-- Если отображаем полный каталог товаров, без указания категории -->
+  {% IF IS_FULL_CATALOG %}
+     &raquo; <span>Каталог товаров</span>
+  <!-- Если отображаем товары в категории -->
+  {% ELSE %}
+    &raquo; <a href="{CATALOG_URL}" >Каталог товаров</a>
+    {% FOR upper_navigation %}
+      {% IF upper_navigation.CURRENT %} &raquo; <span>{upper_navigation.NAME}</span>{% ELSEIF upper_navigation.CURRENT_PARENT %} &raquo; <a href="{upper_navigation.URL}" >{upper_navigation.NAME}</a>{% ENDIF %}
+    {% ENDFOR %}
+  {% ENDIF %}
 
-<!-- Если отображаем полный каталог товаров, без указания категории -->
-      {% IF IS_FULL_CATALOG %}
-        &gt; <strong>Каталог товаров</strong>
-      <!-- Если отображаем товары в категории -->
-      {% ELSE %}
-        &gt; <a href="{CATALOG_URL}" >Каталог товаров</a> 
-        {% FOR upper_navigation %}
-          {% IF upper_navigation.CURRENT %} &gt; <strong>{upper_navigation.NAME}</strong>{% ELSEIF upper_navigation.CURRENT_PARENT %} &gt; <a href="{upper_navigation.URL}" >{upper_navigation.NAME}</a>{% ENDIF %}
-        {% ENDFOR %}
-      {% ENDIF %}
-</p>
+</div>
 
 <h1>{CATEGORY_NAME}</h1>
 
@@ -79,11 +80,11 @@
     <!-- END Дополнительная навигация для работы со списком товаров -->
   {% ENDIF %}
   <!-- END Фильтры показываются только если есть товары в категории -->
-  
+
   <!-- Список товаров -->
   <tr>
     <td colspan="2">
-      <table style="padding:0px;margin:0px;">
+      <table>
         <tr>
           
           <!-- Если список товаров пуст -->
@@ -91,7 +92,7 @@
             <td>
               <!-- Если не применено ни одного фильтра, значит в категории нет товаров -->
               {% IF goods_filters_empty %}
-               
+
                 <!-- Если в категории нет товаров, но есть категории, то отобразим их -->
                 {%IFNOT nested_categories_list_empty %}
           
@@ -99,9 +100,16 @@
                   <ul class="content_catalog_nested_categories">
                     {% FOR nested_categories_list %}
                       <li>
-                        <div class="withBorder cornerAll" style="padding:1em">
+                        <div class="withBorder cornerAll padding1em">
                           <div><a href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;"><img {% IF nested_categories_list.IMAGE_EMPTY %}src="{ASSETS_IMAGES_PATH}no-photo-small.png"{% ELSE %}src="{nested_categories_list.IMAGE_MEDIUM}"{% ENDIF %} alt="{nested_categories_list.NAME}" /></a></div>
-                          <a href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;">{nested_categories_list.NAME}</a>
+                          <a href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;">
+                            {nested_categories_list.NAME} 
+
+                            <!-- Отображение количества товаров в категории -->
+                            {% IF nested_categories_list.GOODS_COUNT>0 %}
+                             ({nested_categories_list.GOODS_COUNT})
+                            {% ENDIF %}
+                          </a>
                         </div>
                       </li>
                     {% ENDFOR %}
@@ -134,11 +142,11 @@
                       <a href="{goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
                     {% ELSEIF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW %}
                       <a href="{goods.URL_MIN_PRICE_OLD}" class="lineThrough">{goods.MIN_PRICE_OLD | money_format}</a>
-                    {% ENDIF %}
+                    {% ENDIF %} 
           		    </div>
                 </div>
               </td>
-          		{goods.index | is_divided("4","</tr><tr>","")}
+          		{goods.index | is_divided("5","</tr><tr>","")}
           	{% ENDFOR goods %}
         	{% ENDIF %}
         </tr>
@@ -173,11 +181,19 @@
 </table>
 
 <!-- Описание категории -->
-<div class="htmlDataBlock">
-  {CATEGORY_DESCRIPTION}
-</div>
+{% IF CATEGORY_DESCRIPTION %}
+  <div class="categoryDescriptionBlock">
+    <div class="htmlDataBlock">
+      {CATEGORY_DESCRIPTION}
+    </div>
+  </div>
+{% ENDIF %}
 
 <!-- Полное SEO описание категории -->
-<div class="htmlDataBlock">
-  {CATEGORY_SEO_DESCRIPTION_LARGE}
-</div>
+{% IF CATEGORY_SEO_DESCRIPTION_LARGE %}
+  <div class="categoryDescriptionBlock">
+    <div class="htmlDataBlock">
+      {CATEGORY_SEO_DESCRIPTION_LARGE}
+    </div>
+  </div>
+{% ENDIF %}

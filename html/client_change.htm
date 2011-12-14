@@ -1,19 +1,22 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <a href="{USER_RECOVERY_URL}">Восстановление пароля</a> &gt; <strong>Активация нового пароля</strong></p>
-<h1>Активация нового пароля</h1>
+<div class="page cornerAll">
+  <h1 class="pageHeader">Активация нового пароля</h1>
+  <div class="pageContent">
 
-{% IF FORM_NOTICE %}
-  <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
-{% ENDIF %}
+    {% IF FORM_NOTICE %}
+      <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
+    {% ENDIF %}
+  
+    <br /><span>Через <span id="time">5</span> секунд вы будете перенаправлены на страницу <a href="{USER_LOGIN_URL}">авторизации</a></span>
 
-<br /><span>Через <span id="time">5</span> секунд вы будете перенаправлены на страницу <a href="{USER_LOGIN_URL}">авторизации</a></span>
-
-<script type="text/javascript">
-  var r_time = 10;
-  function set_time(t) {
-    if(t<0) { return false; }
-    document.getElementById('time').innerHTML = t;
-    setTimeout(function() {set_time(t-1);}, 1000);
-  }
-  set_time(r_time);
-  setTimeout(function() {window.location.href = '{USER_LOGIN_URL}';}, r_time*1000);
-</script>
+    <script type="text/javascript">
+      var r_time = 10;
+      function set_time(t) {
+        if(t<0) { return false; }
+        document.getElementById('time').innerHTML = t;
+        setTimeout(function() {set_time(t-1);}, 1000);
+      }
+      set_time(r_time);
+      setTimeout(function() {window.location.href = '{USER_LOGIN_URL}';}, r_time*1000);
+    </script>
+  </div>
+</div>

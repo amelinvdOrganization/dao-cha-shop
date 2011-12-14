@@ -1,368 +1,117 @@
-/* !form errors -------------------------------------------------------------- */
-label.invalidInput		      {display:block;color:#b85454;height:auto;WIDTH:auto;font-size:0.8em !important;font-weight:normal;margin-top:0px;}
-input.invalidInput 		      {border:1px solid #b85454 !important;background-color: #FFECE6 !important;}
+/* Глобальные классы, которые не нужно удалять */
+.valignMiddle               {vertical-align:middle !important;}
+.valignTop                  {vertical-align:top !important;}
+.alignCenter                {text-align:center !important;}
+.alignRight                 {text-align:right !important;}
+.underline                  {text-decoration:underline !important;}
+td                          {padding:3px;}
+ul                          {padding-left:1em;}
+body                        {padding-bottom: 30px; line-height: 1.4em; margin: 0px; font-family: verdana, arial, helvetica, sans-serif; color: #333; font-size: 11px; opacity: .999}
+a                           {cursor:pointer;color:#286da2;text-decoration:none;}
+a:hover                     {color:#000;text-decoration:underline;}
+img                         {border:0px;}
+.floatLeft                  {float:left !important;}
+.lineThrough                {text-decoration:line-through !important;}
 
-/* !rounded corners -------------------------------------------------------------- */
 .cornerAll                  {-moz-border-radius:5px;-webkit-border-radius:5px;}
 input.cornerAll, textarea.cornerAll             {border:1px solid #cccccc;}
 
-/* !positioning -------------------------------------------------------------- */
-.valignMiddle           {vertical-align:middle !important;}
-.valignTop              {vertical-align:top !important;}
-.valignBottom           {vertical-align:bottom !important;}
-.alignCenter            {text-align:center !important;}
-.alignRight             {text-align:right !important;}
-.alignLeft              {text-align:left !important;}
-.floatLeft              {float:left !important;}
+label.invalidInput		      {display:block;color:#b85454;height:auto;WIDTH:auto;font-size:0.8em !important;font-weight:normal;margin-top:0px;}
+input.invalidInput 		      {border:1px solid #b85454 !important;background-color: #FFECE6 !important;}
+.errorMessage               {color:red;}
+.selected                   {color:#000;font-weight:bold;}
 
-/* ! js ссылки с пунктирным подчеркиванием */
+/* END Глобальные классы, которые не нужно удалять */
+
+/* Классы шаблона */
+h1, h2, h3, h4, h5, h6      {margin-bottom: 0.2em;margin-top: 0.2em;font-weight: lighter;font-family:Helvetica;color:#636363;letter-spacing:0em;line-height: 1.1em;}
+h1                          {font-size: 2em;}
+h2                          {font-size: 1.8em;}
+h3                          {font-size: 1.6em;}
+h3 .indexPage               {color:#636363;}
+h4                          {font-size: 1.4em;}
+h5                          {font-size: 1.2em;}
+h6                          {font-size: 1.1em;}
+
+/* Заголовки на странице отображения товара */
+.goodsData h3 {margin-top:1em;}
+
+/* Для js ссылок пунктирное подчеркивание */
 .jsAction       {border-bottom:1px dashed;}
 .jsAction:hover {border-bottom:1px solid;text-decoration:none;}
 
-/* !numbers -------------------------------------------------------------- */
-.num                    {font-family: helvetica;font-style: italic;white-space: nowrap;}
-
-/* !colors -------------------------------------------------------------- */
-.red                    {color:#d00000;}
-.green                  {color:#057f02;}
-.gray                   {color:#7c7c7c;}
-.black                  {color:#000;}
-.gold                   {color:#BE9E4C;}
+/* Страницы */
+.square_pages               {font-size:1em;text-align:right;clear: both;}
+.square_pages span          {position:relative;bottom:1px\9;}
+.square_pages a             {font-size:1em;height:17px;line-height:17px;color:#8b8b8b;border: #bfbfbf 1px solid;padding:1px 4px 1px 4px; margin-left:0px;text-align:center;font-weight:bold;text-decoration:none;}
+.square_pages a:hover       {background:#d1e7fc;color:#3d3d3d;}
+.square_pages b             {font-size:1em;height:17px;color:#3d3d3d;border: #bfbfbf 1px solid;padding:1px 4px 1px 4px;margin-left:1px;text-align:center;background:#d1e7fc;}
 
 
-/* !pages -------------------------------------------------------------- */
-.square_pages           {font-size:1em;text-align:right;clear: both;}
-.square_pages span      {position:relative;bottom:1px\9;}
-.square_pages a         {font-size:1em;height:17px;line-height:17px;color:#8b8b8b;border: #bfbfbf 1px solid;padding:1px 4px 1px 4px; margin-left:0px;text-align:center;font-weight:bold;text-decoration:none;}
-.square_pages a:hover   {background:#d1e7fc;color:#3d3d3d;}
-.square_pages b         {font-size:1em;height:17px;color:#3d3d3d;border: #bfbfbf 1px solid;padding:1px 4px 1px 4px;margin-left:1px;text-align:center;background:#d1e7fc;}
+/* Для цифр */
+.num                        {font-family: helvetica;font-style: italic;white-space: nowrap;}
 
-.lineThrough            {text-decoration:line-through !important;}
-.errorMessage           {color:red;color:#d00000;}
-/* colour palette
+/* Цвета */
+.red                        {color:red;}
+.green                      {color:#188518;}
 
-dark blue:   #00205B
-red:         #D0431D
-gold:        #BE9E4C
-grey rules:  #E5E5E5
+/* Рамка для интерактивных элементов */
+.withBorder                 {border:1px solid #DCECF7 !important;}
+.withBorder:hover           {border-color:#f1aa36 !important;}
 
-*/
-
-
-/* !layout -------------------------------------------------------------- */
-
-body {
-  font-size: 75%; /* convert 16px base font size to 12px */
-  line-height: 1.6666em; /* 20px (12 x 1.6666 = 20) */
-  font-family: "Lucida Grande", "Trebuchet MS", Verdana, Arial, sans-serif;
-  background-color: #FFF;
-  color: #666;
-}
-
-#headerWrap {height: 150px;background: url({ASSETS_IMAGES_PATH}header_bg.jpg) repeat-x;}
-#header {position: relative;width: 960px;height: 150px;margin: 0 auto;}
-#contentWrap {clear: both;background: url({ASSETS_IMAGES_PATH}contentWrap_bg.jpg) repeat-x left bottom;}
-#content {width: 960px;margin: 0 auto;}
-#contentMainTb {width: 960px;margin:0;border-collapse: collapse;border-spacing: 0;}
-#primaryContent {width: 750px;padding:0 0px 40px 0;vertical-align:top;}
-.clearBoth {clear: both;height: 0;}
-
-/* font sizing guide:
-
-pixels    ems      leading
--------------------------------------
-9px   =   0.75em    2.2222em
-10px   =   0.8333em  2em
-11px   =   0.9166em  1.8181em
-12px   =   1em      1.6666em
-13px   =   1.0833em  1.5384em
-14px   =   1.1666em  1.4285em
-15px   =   1.25em    1.3333em
-16px   =   1.3333em  1.25em
-17px   =   1.4166em  1.1764em
-18px   =   1.5em    1.1111em
-19px   =   1.5833em  1.0526em
-20px   =   1.6666em  1em
-21px   =   1.75em    
-22px   =   1.8333em  
-23px   =   1.9166em  
-24px   =   2em      
-30px  =  2.5em    
-
-(divide desired pixel height by 12 to get 'em' value) */
-
-abbr, acronym {
-  cursor: help;
-  border-bottom: 1px dotted;
-}
-
-p {
-  font-size: 1em;
-  margin: 0.8333em 0 0.8333em 0;
-}
-h1 {
-  font-weight: lighter;
-  color: #BE9E4C;
-  font-size: 1.9666em;
-  line-height: 1.1538em;
-  margin: 0.7692em 0 0.3846em 0;
-}
-h2 {
-  font-weight: normal;
-  color: #BE9E4C;
-  font-size: 2.1666em;
-  line-height: 1.1538em;
-  margin: 0.7692em 0 0.3846em 0;
-}
-
-h3, h3 a {
-  font: 1.5em/1.1111em Georgia, Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif," "Bitstream Vera Serif", "Liberation Serif", serif;
-  font-style: italic;
-  font-weight: normal;
-  color: #BE9E4C;
-  margin: 1.1111em 0 0.5555em 0;
-}
-h3 a.indexPage {
-  font-size: 1em;color: #BE9E4C;
-}
-
-h4, h4 a {
-  font-weight: normal;
-  color: #BE9E4C;
-  font-size: 1.1666em;
-  line-height: 1.4285em;
-  margin: 1.4285em 0 0.7142em 0;
-}
-
-h5 {
-  font-weight: bold;
-  color: #BE9E4C;
-  font-size: 1em;
-  line-height: 1.6666em;
-  margin: 1.6666em 0 0.8333em 0;
-}
-
-#primaryContent p {
-  margin-right: 20px;
-}
-
-#primaryContent ul {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-#primaryContent ul li {
-  background: url({ASSETS_IMAGES_PATH}square_bullet.gif) no-repeat 0 0.6em;
-  padding-left: 10px;
-  margin: 0.8333em 0 0.8333em 0;
-}
-
-sup {
-  font-size: 0.75em;
-  color: #888;
-}
-
-.small {
-  font-size: 0.9166em;
-  line-height: 1.8181em;
-  color: #888;
-}
-
-/* hyperlinks */
-
-a:link, a:visited {
-  color: #D0431D;
-  text-decoration: none;
-}
-
-a:hover, a:active {
-  color: #00205B;
-  text-decoration: underline;
-}
-
-/* data tables */
-
-table {
-  margin-top: 20px;
-  width: auto;
-  border-collapse: collapse;
-}
-
-th, td {
-  font-size: 1em;
-  margin: 0.8333em 0 0.8333em 0;
-  text-align: left;
-  padding: 3px 10px 3px 0;
-}
-
-th {
-  font-weight: bold;
-  color: #BE9E4C;
-  border-bottom-color:#CCC;
-}
-
-td.download {
-  text-align: center !important;
-  padding: 0 !important;
-}
-
-td.download img {
-  margin: 0 0 0 25px !important;
-}
-
-/* !header ---------------------------------------------------------------- */
-
-#header #logo {
-  position: absolute;
-  top: 18px;
-  left: 10px;
-  height: 79px;
-  width: 300px;
-  background: url({ASSETS_IMAGES_PATH}logo.png) no-repeat;
-}
-
-#header #logo a {
-  height: 81px;
-  width: 67px;
-  display: block;
-  text-decoration: none;
-}
-
-
-#header #title {
-  margin: 0;
-  position: absolute;
-  right: 10px;
-  width: 420px;
-  bottom: 44px;
-
-}
-
-/* !search panel -------------------------------------------------------------- */
-#searchPanel {
-  position: absolute;
-  top: 15px;
-  right: 10px;
-}
-
-#searchPanel form {
-  float: right;
-}
-
-#searchPanel p {
-  margin: 0;
-}
-
-input#keywords {
-  margin: 0;
-  font-size: 1em;
-  padding: 0.25em;
-  width: 200px;
-  border: 1px solid #CCC;
-  color: #333;
-}
-
-#searchPanel label,
-#searchPanel input {
-  display:inline;
-  vertical-align:middle;
-  margin-left: 5px;
-}
-
-#searchPanel label {
-  padding-top: 2px;
-}
-
-/* !footer -------------------------------------------------------------- */
-#footer {background: url("{ASSETS_IMAGES_PATH}botfade.jpg") repeat-x 50% 100%;border-top: 1px solid #CCC;clear: both;color: #999;font-family: verdana;height: 139px;margin: 0px;padding: 0px;text-align: center;}
-#footer a {color:#666 !important}
-#footer a.selected {color:#D0431D !important}
-
-
-/* main navigation ---------------------------------------------------------------- */
-#mainNav {position: absolute;left: 5px;bottom: 0;height: 35px;background: url("{ASSETS_IMAGES_PATH}nav_bg.jpg") no-repeat;}
-#mainNav table {float:left;border-collapse: collapse;border-spacing: 0;background: url("{ASSETS_IMAGES_PATH}nav_bg_right.gif") no-repeat bottom right;padding: 5px 5px 0 0;height: 30px;margin:auto;}
-#mainNav table td {padding:5px 0 0 2px;}
-#mainNav table td.first {padding-left: 5px;}
-#mainNav table td.last {padding-right: 5px;}
-#mainNav table td div {float:left;font-size: 1.25em;line-height: 1.3333em;height: 30px;background: #FFF url("{ASSETS_IMAGES_PATH}nav_item_bg.gif") repeat-x bottom left;}
-#mainNav table td div a:link,
-#mainNav table td div a:visited {display: block;height: 26px;color: #666;padding: 4px 10px 0 10px;background: url("{ASSETS_IMAGES_PATH}nav_item_bg.gif") repeat-x bottom left;}
-#mainNav table td div a.selected,
-#mainNav table td div a:hover,
-#mainNav table td div a:active {color: #D0431D;text-decoration: none;background-position: bottom right;}
-
-/* !breadcrumb ---------------------------------------------------------------- */
-
-#breadcrumb {
-  margin: 0px;
-  padding-top: 20px;
-  font-size: 0.9166em;
-  line-height: 1.8181em;
-}
-
-/* !sub navigation ---------------------------------------------------------------- */
-
-#subNavigation {
-  width: 170px;
-}
-
-#subNavigation li {
-  font-size: 1.0833em;
-  line-height: 1.5384em;
-  padding: 0.5em 0;
-  background: url({ASSETS_IMAGES_PATH}subnav_rule.gif) no-repeat left bottom;
-}
-
-#subNavigation li a:link,
-#subNavigation li a:visited {
-  padding-left: 10px;
-  color: #666;
-  display: block;
-}
-
-#subNavigation li a:hover,
-#subNavigation li a:active {
-  background: url({ASSETS_IMAGES_PATH}square_bullet.gif) no-repeat 0 0.6em;
-  color: #D0431D;
-  text-decoration: none;
-}
-
-#subNavigation .selected {color:#D0431D !important}
-
-#leftMenuBlockWrap {
-  width: 170px;
-  padding:1em 0 40px 0;
-  vertical-align:top;
-}
-#leftMenuBlock {
-  width: 170px;
-  margin: 0 20px 0 0;
-}
-
+/* Главные блоки */
+.content                            {max-width:1240px;min-width:1000px;margin:auto;border:1px solid #DCECF7;border-top:0px;}
+.contentTable                       {width:100%;}
+.contentTableHeadMain               {padding:0em 1em 1em 1em;width:220px;}
+.contentTableHeadMainPhone          {text-align:center;font-size:1.4em;padding:0px;}
+.contentTableHeadMainWorkTime       {text-align:center;color:#888;font-size:1.1em;}
+.contentTableHeadMainIcq            {padding-top:1em;}
+.contentTableHeadCart               {width:1%;vertical-align:middle;}
+.contentTableHeadCart td            {white-space:nowrap;}
+.contentTbodyCatalog                {width:220px;vertical-align:top;}
+.contentTableHeadNavigation         {text-align:center;}
+.contentTableHeadUserInfo           {text-align:center;width:220px;overflow:hidden;}
 
 /* Заголовки в блоке навигации слева */
-.contentTbodyCatalogHeader {margin:0 1em 0.33em 0.7em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
+.contentTbodyCatalogHeader          {margin:0 1em 0.33em 1em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
 .contentTbodyCatalogHeader.noBorder {background-image:none;margin-bottom:0em;}
-.contentTbodyCatalogHeader a {color:#BE9E4C}
+.contentTbodyCatalogHeader a        {color:#636363}
 
-/* Новости в блоке навигации слева */
-.contentTbodyNews {padding:0.2em 0.7em 0 1em;}
-.contentTbodyNewsBlockItemTime {font-size:0.9em;color:#666;}
-.contentTbodyNewsBlockItem {font-size:0.9em;margin-bottom:1em;margin-left:0.33em}
+/* Каталог в навигации слева */
+.contentTbodyCatalog ul             {pading-left:1em;}
+.contentTbodyCatalog li             {display:block;}
+.contentTbodyCatalogCurent          {font-weight:bold;line-height:20px;color:#000}
+.contentTbodyCatalogCurentBranch    {font-weight:bold;line-height:20px;color:#666}
+
+.contentTbodyCatalog li a:hover     {background-color: #F3F8FC ;color: #000;text-decoration: none;}
+.contentTbodyCatalog li a           {display:block;line-height:20px;padding-left:15px;background:url('{ASSETS_IMAGES_PATH}catalogMenuMarker.gif') 5px center  no-repeat;}
 
 /* Каталог навигации по категориям на странице списка товаров */
-.content_catalog_nested_categories li {text-align:center;float:left;width:150px;overflow:hidden;padding:1em;margin:0;list-style-type:none;background:none !important;}
+.content_catalog_nested_categories li {text-align:center;float:left;width:170px;overflow:hidden;padding:1em;margin:0;list-style-type:none;background:none !important;}
 .content_catalog_nested_categories li .withBorder {height:150px;}
+
+/* Новости в блоке навигации слева */
+.contentTbodyNews {padding-left:1em;padding-right:1em;}
+.contentTbodyNewsBlockItemTime {font-size:0.9em;color:#666;}
+.contentTbodyNewsBlockItem {margin-bottom:1em;margin-left:0.33em}
+
+/* Форма поиска */
+.Search                             {vertical-align:middle;text-align:left;}
+.SearchFormTable                    {width:100%;}
+.SearchFormTable .cell1             {width:99%;padding:0em 1em 0em 0em;text-align:right;vertical-align:middle;}
+.SearchFormTable .cell2             {padding:0px;width:1%;text-align:right;vertical-align:middle;}
+.SearchFormText                     {padding:0.33em;width:98%;margin:0px;border:1px solid #cccccc;}
+
 
 /* страница списка новостей */
 .newsListBlockItem {padding-bottom:1em;}
-.newsListBlockItemTitle {font-size:1.33em;color:#BE9E4C !important}
+.newsListBlockItemTitle {font-size:1.33em;}
 .newsListBlockItemPreview {margin:0.3em 0em 0em 0em;}
 .newsListBlockItemTime {font-size:0.9em;color:#888;}
 
 /* Страница новости */
-.newsListBlockItemTitle {font-size:1.33em;color:}
+.newsListBlockItem {padding-bottom:1em;}
+.newsListBlockItemTitle {font-size:1.33em;}
 .newsListBlockItemPreview {margin:0.3em 0em 0em 0em;}
 .newsListBlockItemTime {font-size:0.9em;color:#888;}
 .newsListBlockItemFiles {margin:1em 0 1em 0}
@@ -410,114 +159,76 @@ input#keywords {
 /* END Иконки форматов файлов */
 
 
-/*cartInfo*/
-#cartInfo {
-  position:absolute;
-  font-size: 13px;
-  bottom: 6px;
-  right: 10px;
-  white-space:nowrap;
-}
-#cartInfo a {
-  color:#000;
-  text-transform: uppercase;
-}
-/*cartInfo*/
-
-/*contactInfo*/
-#contactInfo {
-  position:absolute;
-  font-size:1.2em;
-  top: 5px;
-  left: 330px;
-}
-
-.contentTableHeadMainPhone                   {color:#3399cc;}
-
-.contactInfoContentCountryCode               {color:#BE9E4C;}
-.contactInfoContent {
-  height:100px;
-  width: 180px;
-  vertical-align:middle;
-  
-}
-#contactInfo table {margin:0px;}
-#contactInfo td {padding:0px;text-align:center !important;}
-/*contactInfo*/
-
 /* Страница категории. ячейки с товаром */
-.goodsListItem                      {text-align:center;vertical-align:top;width:200px;overflow:hidden;padding:0px;}   /* Размер в 200 пикселей сделан, чтобы и 2 и 5 товаров нормально смотрелись и была возможность увеличить разрешение до 1220 пикселей*/
-.goodsListItemBlock                 {height:200px;margin:5px;overflow:hidden;}
-.goodsListItemBlock a               {color:#BE9E4C}
-.goodsListItemImage                 {height:100px;margin-top:1em}
-.goodsListItemName                  {line-height:1.2em;padding:0px 2px 0px 2px;margin:0px;max-height:3.6em;overflow:hidden;}
-.goodsListItemName a                {color:#2f97cb;font-size:15px;line-height:1.2em;padding:0px;margin:0px;}
+.goodsListItem                      {vertical-align:top;width:200px;overflow:hidden;padding:0px;}   /* Размер в 200 пикселей сделан, чтобы и 2 и 5 товаров нормально смотрелись и была возможность увеличить разрешение до 1220 пикселей*/
+.goodsListItemBlock                 {height:200px;margin:5px;text-align:center;overflow:hidden;}
+.goodsListItemName                  {font-size:14px;text-align:center;max-height:3.8em;overflow:hidden;}
+.goodsListItemImage                 {height:100px;margin-top:  1em}
+.goodsListItemPrice                 {margin-top:10px;}
 
-/* Рамка для интерактивных элементов */
-.withBorder                         {border:1px solid #E5E5E5 !important;}
-.withBorder:hover                   {border-color:#D0431D !important;}
-
+/* Страница категории. Текстовый блок*/
+.categoryDescriptionBlock           {margin:1em 0em 1em 0em;}
 
 /* Страница товара. Цена товара */
 .goodsDataMainModificationPriceOld {display:block;}
 
 /* Страница товара. Характеристики */
 .goodsDataFeatures                  {width:100%;}
-.goodsDataFeatures p                {float:left;margin:0;padding:0;width:100%;background:transparent url('http://development.storeland.ru/static/upload/assets/images/1/19/grey_dotted.gif') repeat-x scroll 0 100%;}
-.goodsDataFeatures p span           {border-bottom:1px solid #FFFFFF;color:#A9A9A9;}
+.goodsDataFeatures p                {float:left;margin:0;padding:0;width:100%;background:transparent url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100%;}
+.goodsDataFeatures p span           {border-bottom:1px solid #FFFFFF;background:#FFFFFF none repeat scroll 0 0;color:#A9A9A9;}
+
 /* Страница товара. Основные данные */
 .goodsDataMain td                   {vertical-align:top}
 .goodsDataMainImageBlock            {width:280px;}
-.goodsDataMainImageBlock img        {padding:2px;}
 .goodsDataMainImagesIcon            {width:46px;height:46px;margin:0.2em 0.4em 0.2em 0em;}
 .goodsDataMainImagesIcon img        {padding:2px;}
 .goodsDataMainImageZoom             {text-align:center;padding:0.5em;}
-.goodsDataMainImageZoom a           {padding:5px 0px 5px 25px;background:transparent url('http://development.storeland.ru/static/upload/assets/images/1/19/zoom-magnifying.png') no-repeat scroll center left;}
-.goodsDataMainModificationDataBlock,
-.goodsDataMainModificationsBlock,
-.goodsDataMainDiscountBlock,
-.goodsDataMainDeliveryBlock,
-.goodsDataMainModificationsDescriptionBlock         {padding:1em;}
-
-.goodsDataMainModificationsBlockProperty {padding:5px;}
-.goodsDataMainModificationsBlockProperty select {width:auto;}
+.goodsDataMainImageZoom a           {padding:5px 0px 5px 25px;background:transparent url('{ASSETS_IMAGES_PATH}zoom-magnifying.png') no-repeat scroll center left;}
 
 /* Страница товара. Акция на товар */
-.goodsDataMainDiscountBlock {line-height:1.8em;}
+.goodsDataMainDiscountBlock {line-height:1.5em;}
 
-.goodsHeader h1,
-.goodsDataForm h4,
-.goodsDataForm h5                   {margin-top:0px;padding:0px;line-height:1.2em;}
-.goodsDataForm table                {margin:0px;}
+.goodsDataMainModificationDataBlock,
+.goodsDataMainDiscountBlock,
+.goodsDataMainModificationsBlock,
+.goodsDataMainDeliveryBlock,
+.goodsDataMainModificationsDescriptionBlock {padding:1em;}
+
+.goodsDataMainModificationsBlockProperty {padding:5px;}
+.goodsDataMainModificationsBlockProperty select {width:auto;margin-top:3px;}
+
 .goodsDataMainModificationsList     {display:none;}
 .goodsDataMainModificationData      {width:240px;vertical-align:middle;}
-.goodsDataMainModificationPriceNow  {font-size:1.5em;color:#F2912D;margin:0px;white-space:nowrap;}
+.goodsDataMainModificationPriceNow  {font-size:1.5em;color:#F2912D;white-space:nowrap;}
+
 /* Страница товара. Информация о заказе */
-.goodsDataMainOrder                 {border:1px solid #E5E5E5}
+.goodsDataMainOrder                 {border:1px solid #DCECF7}
 .goodsDataMainModificationAvailable {white-space:nowrap;}
+
 /* Страница товара. Кнопка положить в корзину */
-.goodsDataFormSubmitButton          {text-align:right;white-space:nowrap;vertical-align:middle;padding:1em 1em 1em 0;}
+.goodsDataFormSubmitButton          {vertical-align:middle;text-align:right;white-space:nowrap;padding:1em 1em 1em 0;}
+
 /* Страница товара. Информация о доставке */
 .goodsDataMainModificationsBlock,
 .goodsDataMainDiscountBlock,
 .goodsDataMainDeliveryBlock,
-.goodsDataMainModificationsDescriptionBlock {border-top:1px solid #E5E5E5;}
+.goodsDataMainModificationsDescriptionBlock {border-top:1px solid #DCECF7;}
 
 .goodsDataMainDeliveryItemHeader        {padding:1em 0em 0.5em 0.3em;color:#555;}
 .goodsDataMainDeliveryItem              {padding:0em 1em 0em 1em;}
-.goodsDataMainDeliveryItemRules         {padding-bottom:1em;}
-.goodsDataMainDeliveryItemRules tbody td{padding:2px;line-height:1.2em;}
+.goodsDataMainDeliveryItemRules tbody td{padding:2px;}
+.goodsDataMainDeliveryItemRules         {padding-top:1em;}
 .goodsDataMainDeliveryItemRules caption {text-align:left;}
 .goodsDataMainDeliveryItemRules caption h5 {font-style: italic;white-space: nowrap;}
-.goodsDataMainDeliveryItemRules p       {float:left;margin:0;padding:0;line-height:1.4em;width:100%;background:transparent url('http://development.storeland.ru/static/upload/assets/images/1/19/grey_dotted.gif') repeat-x scroll 0 100%;}
-.goodsDataMainDeliveryItemRules p span  {border-bottom:1px solid #ffffff;color:#666666;}
-
+.goodsDataMainDeliveryItemRules p       {float:left;margin:0;padding:0;width:100%;background:transparent url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100%;}
+.goodsDataMainDeliveryItemRules p span  {border-bottom:1px solid #FFFFFF;background:#FFFFFF none repeat scroll 0 0;color:#666666;}
 
 /* Корзина. Шапка таблицы */
 .cartFormTable                        {width:100%}
-.cartFormThead th                     {padding:0.5em;background:none repeat scroll 0 0 #EEF5FB;font-weight:normal;white-space:nowrap;text-align:center;}
+.cartFormThead th                     {padding:1em;background:none repeat scroll 0 0 #EEF5FB;font-weight:normal;white-space:nowrap;text-align:center;}
+
 /* Корзина. Позиции заказа */
-.cartFormTbody td                     {padding:0.66em;vertical-align:middle;background:url('http://development.storeland.ru/static/upload/assets/images/1/19/grey_dotted.gif') repeat-x scroll 0 100% transparent;}
+.cartFormTbody td                     {padding:0.66em;vertical-align:middle;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
 .cartFormTbody td.cell1               {text-align:center;}
 .cartFormTbody td.cell2               {width:500px;vertical-align:top;}
 .cartFormTbodyNavigate a              {color:#888;}
@@ -528,6 +239,7 @@ input#keywords {
 .cartFormTbody td.cell4               {text-align:right;font-size:1.3em;color:#188518;}
 .cartFormTbody td.cell5               {text-align:right;font-size:1.3em;color:#188518;}
 .cartFormTbody td.cell6               {text-align:center;}
+
 /* Корзина. Низ таблицы заказа */
 .cartFormTfootSumTable                {float:right;font-size:1.5em;margin:0.5em 0em 0.5em 0em}
 .cartFormTfootSumTable .cell1         {vertical-align:top;}
@@ -535,32 +247,28 @@ input#keywords {
 .cartFormTfootTruncate                {text-align:left;vertical-align:middle;white-space:nowrap;}
 .cartFormTfootButtons                 {text-align:right;}
 
-
 /* Оформление заказа. Общие настройки */
-.orderData,
-.order                                {padding:1em;margin:1em 0em 1em 0em;border:1px solid #E5E5E5;}
-
-
-.order h3                             {margin:0.5em 0em 0em 0em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
+.order                                {padding:1em;margin-right:1em;border:1px solid #DCECF7;}
+.order label                          {font-weight:normal;display:block;font-size: 1.4em;margin-top:0.2em;}
+.order .orderStageDeliveryZoneLabel   {font-weight:normal;display:inline;font-size:1em;margin-top:0;}
+.order h3                             {margin:0em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
 .orderInfo                            {padding:1em;}
-.orderInfo table                      {margin-top:0.5em;}
 
 /* Оформление заказа. Контактная информация */
 .orderStageContact table              {width:100%;}
-.orderStageContact td.cell1           {width:200px;white-space:nowrap;}
+.orderStageContact td.cell1           {width:250px;white-space:nowrap;}
 .orderStageContact td.cell2           {width:auto;}
 .orderStageContact input              {width:90%;}
 .orderStageContact .orderStageContactCheckbox {width:auto;text-align:left;}
 
 /* Оформление заказа. Ссылка показать пароль */
-.OrderShowPassBlock                   {text-align:left;padding-top:0.1em;}
-.OrderShowPass                        {font-size:1em;color:#888;border-bottom:1px dashed;}
-.OrderShowPass:hover                  {border-bottom:1px solid;text-decoration:none;}
+.OrderShowPassBlock {text-align:left;padding-top:0.1em;}
+.OrderShowPass {font-size:1em;color:#888;border-bottom:1px dashed;}
+.OrderShowPass:hover {border-bottom:1px solid;text-decoration:none;}
 
 /* Оформление заказа. Выбор доставки */
 .orderStageDelivery table             {width:100%;margin-bottom:1em;}
-.orderStageDelivery td                {vertical-align:middle;margin:0px;}
-.orderStageDelivery td p              {margin:0px;}
+.orderStageDelivery td                {vertical-align:middle;}
 .orderStageDelivery td.cell1          {width:20px;}
 .orderStageDelivery td.cell2          {width:auto;}
 .orderStageDelivery td.cell3          {width:200px;white-space:nowrap;text-align:right;font-size:1.5em;color:#188518;}
@@ -568,7 +276,7 @@ input#keywords {
 .orderInfoDeliveryAddress input,  
 .orderInfoDeliveryAddress #deliveryCountry {width:150px;}
 #deliveryConvenientDate               {width:75px; text-align:center;}
-.orderInfoDeliveryAddress label       {white-space:nowrap;padding-top:3px;display:block;}
+.orderInfoDeliveryAddress label       {white-space:nowrap;display:block;}
 .orderInfoDeliveryAddress td          {vertical-align:top;}
 
 /* Оформление заказа. Подтверждение заказа */
@@ -582,10 +290,10 @@ input#keywords {
 
 
 /* Кнопки навигации для перехода по шагам заказа */
-.orderStageSubmitNavigation           {padding-top:2em;}
+.orderStageSubmitNavigation           {padding:1em;}
 
 /* Оформление заказа. Шаги пользователя */
-.orderHeader                       {margin:0em 0em 0.5em 0em;font-size:1.2em;}
+.orderHeader                       {margin:0em 0em 0.5em 0em;font-size:1.5em;}
 .orderHeader td                    {color:#cccccc}
 .orderHeader td.act                {color:#555}
 .orderStepName                     {vertical-align:middle;padding-right:2em;}
@@ -605,35 +313,42 @@ input#keywords {
 .orderIcon.delivery                {background-position:-118px -3px;margin:auto;}
 
 /* Информация по оформленному заказу */
-.orderData h3                      {font-size:1.5em;}
+.orderData                         {padding:1em;margin-right:1em;border:1px solid #DCECF7;}
 .orderData h3                      {margin:0em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
 .orderDataInfo                     {padding:2em 1em 0em 1em;}
-.orderDataTable                    {width:100%;margin:0px;}
-.orderDataTable th                 {padding:0.5em;background:none repeat scroll 0 0 #EEF5FB;font-weight:normal;text-align:center;}
+.orderDataTable                    {width:100%;}
+.orderDataTable th                 {padding:1em;background:none repeat scroll 0 0 #EEF5FB;font-weight:normal;text-align:center;}
 .orderDataTableHeader              {text-align:left !important;}
-.orderDataTable .cell1             {width:210px;white-space:nowrap;padding:1em 0em 0em 1em;vertical-align:top;}
-.orderDataTable .cell2             {width:auto;vertical-align:top;padding:1em 0em 0em 0em;}
+.orderDataTable .cell1             {width:210px;white-space:nowrap;padding:1em 0em 1em 1em;vertical-align:top;}
+.orderDataTable .cell2             {width:auto;vertical-align:middle;}
 .orderDataTable p                  {margin:0;padding:0;width:100%;background:transparent url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100%;}
-.orderDataTable p span             {border-bottom:1px solid #FFFFFF;color:#666666;}
+.orderDataTable p span             {border-bottom:1px solid #FFFFFF;background:#FFFFFF none repeat scroll 0 0;color:#666666;}
+
+/* Текстовая страница */
+.page                              {padding:1em;width:90%;border:1px solid #DCECF7;}
+.page.noBorder                     {border:none;}
+.pageHeader                        {margin:0em 0em 1em 0em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
+.pageContent                       {margin:1em;}
 
 /* Список акции на товары */
-.promotionCampaignHeader a              {font-size:22px;}
+.promotionCampaignHeader                {margin-top:1em;}
+.promotionCampaignHeader a              {font-size:18px;}
 .promotionCampaignList                  {font-size:12px}
-.promotionCampaignInfo                  {width:100%;font-size:12px;margin:0px;}
+.promotionCampaignInfo                  {width:100%;font-size:12px;margin:1em 0 1em 0;}
 .promotionCampaignInfo p                {line-height:1.4em;float:left;margin:0.2em 0em 0em 0em;padding:0;width:100%;background:transparent url('http://development.storeland.ru/static/upload/assets/images/1/19/grey_dotted.gif') repeat-x scroll 0 100%;}
 .promotionCampaignInfo p span           {line-height:1.2em;border-bottom:3px solid #FFFFFF; background:#FFFFFF none repeat scroll 0 0;color:#A9A9A9;}
 .promotionCampaignInfo td               {padding-bottom:5px;}
 .promotionCampaignInfo td.cell1         {width:200px}
-.promotionCampaignInfo td.cell2         {font-weight:bold;}
+.promotionCampaignInfo td.cell2         {}
 
-/* Форма связи с администрацией */
-.feedbackForm label {font-weight:normal;display:block;font-size: 1.2em;margin:0.1em 0 0.1em 0;}
+/* Форма обратной связи */
+.feedbackForm label {font-weight:normal;display:block;font-size: 1.4em;margin:0.2em 0 0.2em 0;}
 .feedbackForm .input {width:300px;}
 .feedbackForm textarea {width:600px;}
 
 /* Форма оплаты заказа по интернету */
 .paymentFormTbody label                   {font-weight:normal}
-.paymentFormTbody h4                      {color:#910f0f}
+.paymentFormTbody h4                      {padding:1em 0 1em 0;color:#910f0f}
 .paymentFormTbody input.inputText         {padding:0.2em;width:300px;}
 .paymentFormTbody select                  {padding:0.2em;width:308px;}
 .paymentFormTbody .paymentFormSubmitLink  {font-size:1.3em;}
@@ -641,9 +356,8 @@ input#keywords {
 .paymentFormTbody p                       {width:auto;background:none;}
 .paymentBankRu .tr6 .ceil1                {padding-top:1em;}
 
-
 /* Сравнение товаров в блоке навигации слева */
-.contentTbodyCompare {padding:0.2em 1em 1em 1.5em;} 
+.contentTbodyCompare {padding:0 1em 1em 1.5em;} 
 .contentTbodyCompareEmpty {color:#888;}
 .contentTbodyCompareDetails {display:block;margin-top:5px;}
 
@@ -660,8 +374,8 @@ input#keywords {
 .CompareGoodsTableTbodyComparisonLine.same{color:#888;background:#F0F0F0}
 .CompareGoodsTableTbodyComparisonLine.hover{background:#E1FAE1}
 .CompareGoodsTableTbodyComparisonLine td  {text-align:left;}
-.CompareGoodsTableFilterSelected          {font-weight:bold;color:#000 !important;text-decoration:none;}
-.CompareGoodsTableFilterSelected:hover    {text-decoration:none;cursor:default;color:#000 !important;}
+.CompareGoodsTableFilterSelected          {font-weight:bold;color:#000;text-decoration:none;}
+.CompareGoodsTableFilterSelected:hover    {text-decoration:none;cursor:default;}
 .CompareGoodsHideSelected                 {display:block;height:20px;width:220px;}
 .CompareGoodsShowAll                      {display:block;height:20px;width:220px;}
 .CompareGoodsDeleteLink                   {display:block;height:15px;width:15px;overflow:hidden;float:right;background: url('{ASSETS_IMAGES_PATH}icon-cancel.gif') no-repeat 50% 50%;}
@@ -691,11 +405,14 @@ input#keywords {
 /* Личный кабинет клиента. Информация о заказе */
 .clientOrderInfo {padding-bottom:2em;}
 .clientOrderInfoMain {border:1px solid #ccc;padding:1em;}
-.clientOrderInfoMainTb {margin:0px;}
 .clientOrderInfoMainTb td {border:1px solid #ccc;padding:7px;}
 .clientOrderInfoPositions {border:1px solid #ccc;padding:1em;}
-.clientOrderInfoPositionsTb {margin:0px;}
 .clientOrderInfoPositionsTb td {border:1px solid #ccc;padding:7px;}
+
+/* Страница товара. Отступы для блоков описания, характеристик и добавления отзыва */
+.goodsDescriptionBlock,
+.goodsDataFeatures,
+.goodsDataOpinionAddTable {margin:1em;}
 
 /* Страница товара. Добавление отзыва о товаре */
 .goodsDataOpinionMsg {margin:0 0 0 20px;white-space:nowrap;}
@@ -722,14 +439,14 @@ input#keywords {
 .goodsDataOpinionListTableAnswer {padding:1em;color:#167507}
 
 .goodsDataOpinionListNavigateBottom td {padding-top:1em;}
-.goodsDataOpinionListTable {width:750px;}
+.goodsDataOpinionListTable {width:900px;}
 .goodsDataOpinionListTable td {border-bottom:1px solid #cccccc;padding: 0.5em 1em 0.4em 0;}
 .goodsDataOpinionListTable td.ceil1 {width:20%;}
 .goodsDataOpinionListTable td.ceil2 {width:80%;}
 .goodsDataOpinionListTableDate {display:block;color: #979797;font-size: 0.8em;font-weight: normal;}
 
 /* Фильтры по товарам в колонке меню */
-.contentTbodySearchFilterBlock              {padding:1em;margin:0 0 0 1em;border:1px solid #E5E5E5;}
+.contentTbodySearchFilterBlock              {padding:1em;margin:0 1em 0 1em;border:1px solid #DCECF7;}
 .contentTbodySearchFilterBlockValues        {padding:1em 0 1em 1em;}
 .contentTbodySearchFilterBlockValues label  {font-weight:normal;}
 

@@ -1,4 +1,6 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Акции магазина</strong></p>
+<div class="contentTbBodyNavigate">
+<a href="http://{NET_DOMAIN}/">Главная</a> &raquo; <span>Акции магазина</span>
+</div>
 
 <h1>Акции магазина</h1>
 
@@ -7,27 +9,21 @@
     <h3 class="promotionCampaignHeader">Акций в нашем магазине пока нет</h3>
 {% ELSE %}
   {% FOR promotion_campaign %}
-    <div class="listing">
-      <div class="container">
-        <h3 class="promotionCampaignHeader"><a href="{promotion_campaign.URL}">{promotion_campaign.NAME}</a></h3>
-        <p>
-          <table class="promotionCampaignInfo">
-            <tr>
-              <td class="cell1"><p><span>Сроки проведения акции:</span></p></td>
-              <td class="cell2">{promotion_campaign.BEGINNING_TIME | date("d.m.Y")} - {promotion_campaign.EXPIRED_TIME | date("d.m.Y")}</td>
-            </tr>
-            <tr>
-              <td class="cell1"><p><span>Размер скидки:</span></p></td>
-              <td class="cell2">{promotion_campaign.PERCENTAGE} %</td>
-            </tr>
-           </table>
-           <p>{promotion_campaign.DESCRIPTION_SHORT | nl2br}</p>
-           <a title="{promotion_campaign.NAME}" href="{promotion_campaign.URL}">Подробнее...</a>
-		    </p>
-		      
-      </div>
-      <div class="clr"></div>
-    </div>
+    <h3 class="promotionCampaignHeader"><a href="{promotion_campaign.URL}">{promotion_campaign.NAME}</a></h3>
+    <p>
+      <table class="promotionCampaignInfo">
+        <tr>
+          <td class="cell1"><p><span>Сроки проведения акции:</span></p></td>
+          <td class="cell2">{promotion_campaign.BEGINNING_TIME | date("d.m.Y")} - {promotion_campaign.EXPIRED_TIME | date("d.m.Y")}</td>
+        </tr>
+        <tr>
+          <td class="cell1"><p><span>Размер скидки:</span></p></td>
+          <td class="cell2">{promotion_campaign.PERCENTAGE} %</td>
+        </tr>
+       </table>
+       <p>{promotion_campaign.DESCRIPTION_SHORT | nl2br}</p>
+       <a title="{promotion_campaign.NAME}" href="{promotion_campaign.URL}">Подробнее...</a>
+    </p>
   {% ENDFOR promotion_campaign %}
 {% ENDIF %}       
 <!-- end promotion campaign list -->

@@ -1,7 +1,6 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Корзина</strong></p>
-
 <form action="{CART_URL}" method="post" class="cartForm">
   <div>
+  
     {% IF FORM_NOTICE %}<h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}errorMessage{% ENDIF %}">{FORM_NOTICE | nl2br}</h3>{% ENDIF %}
   
     {% IF cart_items_empty %}
@@ -25,14 +24,14 @@
             {% FOR cart_items %}
             <tr>
               <td class="cell1">
-                <a href="{cart_items.GOODS_URL}"><img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}"></a>
+                <a href="{cart_items.GOODS_URL}"><img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" /></a>
               </td>
               <td class="cell2">
                 <a href="{cart_items.GOODS_URL}" class="cartFormTbodyHeader">
                   {cart_items.GOODS_NAME}
                   
                   <!-- Если у товара есть отличительные свойства для модификации товара, допишем их к названию товара -->
-                  {% IFNOT cart_items.DISTINCTIVE_PROPERTIES_EMPTY %}<span>({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</span>{% ENDIF %}
+                  {% IFNOT cart_items.distinctive_properties_empty %}<span>({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</span>{% ENDIF %}
                 </a>
 
                 <!-- Путь к категории, из которой заказали товара -->

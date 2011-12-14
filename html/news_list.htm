@@ -1,36 +1,38 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>{NEWS_SECTION_NAME}</strong></p>
-<h1>{NEWS_SECTION_NAME}</h1>
+<div class="page cornerAll">
+  <h1 class="pageHeader">{NEWS_SECTION_NAME}</h1>
+  <div class="pageContent">
+    {%IF news_list_empty %}
+      <p>Пока новостей нет.</p>
+    {%ELSE%}
 
-{%IF news_list_empty %}
-  <p>Пока новостей нет.</p>
-{%ELSE%}
+      <!-- Список новостей -->
+      <p class="newsListBlock">
+      {% FOR news_list %}
+        <div class="newsListBlockItem"> 
+          <a href="{news_list.URL}" class="newsListBlockItemTitle" title="Перейти к странице новости">{news_list.TITLE}</a><br />
+          <div class="newsListBlockItemPreview">{news_list.TEXT_SHORT} </div>
+          {% IF news_list.SHOW_TIME %}<em class="newsListBlockItemTime">{news_list.TIME | date("d.m.Y")}</em><br />{% ENDIF %} 
+        </div>
+      {% ENDFOR %}
+      </p>
 
-  <!-- Список новостей -->
-  <p class="newsListBlock">
-  {% FOR news_list %}
-    <div class="newsListBlockItem"> 
-      <a href="{news_list.URL}" class="newsListBlockItemTitle" title="Перейти к странице новости">{news_list.TITLE}</a><br />
-      <div class="newsListBlockItemPreview">{news_list.TEXT_SHORT} </div>
-      {% IF news_list.SHOW_TIME %}<em class="newsListBlockItemTime">{news_list.TIME | date("d.m.Y")}</em><br />{% ENDIF %} 
-    </div>
-  {% ENDFOR %}
-  </p>
+      <!-- Страницы -->
+      <div>
+        {% IF show_pages %}
+        <div class="square_pages">
+          <span>Страницы: </span>
+            {% FOR news_pages %}
+              {% IF news_pages.CURRENT %}
+                <b>{news_pages.PAGE}</b>
+              {% ELSE %}
+                <a href="?sid={NEWS_SECTION_ID}&page={news_pages.PAGE}">{news_pages.PAGE}</a>
+              {% ENDIF %}
+            {% ENDFOR %}
+        </div>
+        {% ENDIF %}
+      </div>
 
-  <!-- Страницы -->
-  <div>
-    {% IF show_pages %}
-    <div class="square_pages">
-      <span>Страницы: </span>
-        {% FOR news_pages %}
-          {% IF news_pages.CURRENT %}
-            <b>{news_pages.PAGE}</b>
-          {% ELSE %}
-            <a href="?sid={NEWS_SECTION_ID}&page={news_pages.PAGE}">{news_pages.PAGE}</a>
-          {% ENDIF %}
-        {% ENDFOR %}
-    </div>
     {% ENDIF %}
   </div>
-
-{% ENDIF %}
+</div>
 

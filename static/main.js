@@ -107,8 +107,8 @@ $(document).ready(function(){
   $('.goodsDataForm, .goodsToCartFromCompareForm').submit(function(){
     $(this).nyroModalManual({
       formIndicator: 'ajax_q',  // Value added when a form is sent
-      minWidth: 420, // Minimum width
-      minHeight: 150, // Minimum height
+      minWidth: 450, // Minimum width
+      minHeight: 175, // Minimum height
       gallery: null // Gallery name if provided
     });
     return false;

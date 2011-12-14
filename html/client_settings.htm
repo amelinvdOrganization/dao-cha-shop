@@ -1,89 +1,91 @@
-<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Личный кабинет</strong></p>
-<h1>Личный кабинет</h1>
+<div class="page cornerAll">
+  <h1 class="pageHeader">Личный кабинет</h1>
+  <div class="pageContent">
 
-<!-- Контент -->
-<form action="{USER_SETTINGS_URL}" method="post" class="clientForm">
-  <div>
-    <input type="hidden" name="hash" value="{HASH}" />
+    <form action="{USER_SETTINGS_URL}" method="post" class="clientForm">
+      <div>
+        <input type="hidden" name="hash" value="{HASH}" />
+        {% IF FORM_NOTICE %}
+          <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
+        {% ENDIF %}
+        
+        <table>
 
-    {% IF FORM_NOTICE %}
-      <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
-    {% ENDIF %}
+          <!-- Тело таблицы. Форма настроек пользователя -->
+          <tbody>
+            <tr>
+              <td colspan="2"><h5>Персональные настройки</h5></td>
+            </tr>
+            <tr>
+              <td class="ceil1"><label for="reg_name">Вас зовут</label></td>
+              <td class="ceil2"><input id="reg_name" name="form[sites_client_name]"  value="{FORM_SITES_CLIENT_NAME}" maxlength="100" class="required cornerAll"/></td>
+              <td class="ceil3 valignMiddle" rowspan="5">
+                <div class="alignCenter" style="display:none;" id="caps_lock"> 
+                	<img src="{ASSETS_IMAGES_PATH}warningCapslock.png"><br />
+                	<strong>Caps Lock включен.</strong><br />
+                	Пароль может быть введен неверно.
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_mail">Телефон для связи</label></td>
+              <td><input id="sites_client_mail" name="form[sites_client_phone]"  value="{FORM_SITES_CLIENT_PHONE}" maxlength="255" class="required cornerAll"/></td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_mail">Email</label></td>
+              <td><input id="sites_client_mail" name="form[sites_client_mail]"  value="{FORM_SITES_CLIENT_MAIL}" maxlength="255" class="required email cornerAll"/></td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_pass">Пароль</label></td>
+              <td>
+                <input id="sites_client_pass" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="required cornerAll" /><br />
+                {% IFNOT user_agent_ie %}
+                <div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
+                {% ENDIF %}
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2"><br /><h5 style="white-space:nowrap;">Значения по умолчанию. Используются при оформлении заказа</h5></td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_country">Страна</label></td>
+              <td><input id="sites_client_country" name="form[sites_client_country]"  value="{FORM_SITES_CLIENT_COUNTRY}" maxlength="255" class="cornerAll"/></td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_region">Область</label></td>
+              <td><input id="sites_client_region" name="form[sites_client_region]"  value="{FORM_SITES_CLIENT_REGION}" maxlength="255" class="cornerAll"/></td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_city">Город</label></td>
+              <td><input id="sites_client_city" name="form[sites_client_city]"  value="{FORM_SITES_CLIENT_CITY}" maxlength="255" class="cornerAll"/></td>
+            </tr>
+            <tr>
+              <td><label for="sites_client_zip_code">Почтовый индекс</label></td>
+              <td><input id="sites_client_zip_code" name="form[sites_client_zip_code]"  value="{FORM_SITES_CLIENT_ZIP_CODE}" maxlength="6" class="digits cornerAll"/></td>
+            </tr>
+            <tr>
+              <td class="valignTop"><label for="sites_client_addr">Адрес доставки</label></td>
+              <td><textarea id="sites_client_addr" name="form[sites_client_addr]" >{FORM_SITES_CLIENT_ADDR}</textarea></td>
+            </tr>
+          </tbody>
+          <!-- END Тело таблицы. Форма настроек пользователя -->
+          
+          <!-- Низ таблицы. Кнопка отправки формы -->
+          <tfoot>
+            <tr>
+              <td colspan="3"><input type="submit" value="Сохранить" /></td>
+            </tr>
+            
+            <tr>
+              <td colspan="3">
+                <a href="{USER_HISTORY_LIST_URL}">История заказов</a>
+              </td>
+            </tr>
+          </tfoot>
 
-    <table>
+        </table>
+      </div>
+    </form>
 
-      <!-- Тело таблицы. Форма настроек пользователя -->
-      <tbody>
-        <tr>
-          <td colspan="2"><h4 style="margin-top:0;">Персональные настройки</h4></td>
-        </tr>
-        <tr>
-          <td class="ceil1"><label for="reg_name">Вас зовут</label></td>
-          <td class="ceil2"><input id="reg_name" name="form[sites_client_name]"  value="{FORM_SITES_CLIENT_NAME}" maxlength="100" class="required cornerAll"/></td>
-          <td class="ceil3 valignMiddle" rowspan="5">
-            <div class="alignCenter" style="display:none;" id="caps_lock"> 
-            	<img src="{ASSETS_IMAGES_PATH}warningCapslock.png"><br />
-            	<strong>Caps Lock включен.</strong><br />
-            	Пароль может быть введен неверно.
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_mail">Телефон для связи</label></td>
-          <td><input id="sites_client_mail" name="form[sites_client_phone]"  value="{FORM_SITES_CLIENT_PHONE}" maxlength="255" class="required cornerAll"/></td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_mail">Email</label></td>
-          <td><input id="sites_client_mail" name="form[sites_client_mail]"  value="{FORM_SITES_CLIENT_MAIL}" maxlength="255" class="required email cornerAll"/></td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_pass">Пароль</label></td>
-          <td>
-            <input id="sites_client_pass" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="required cornerAll" /><br />
-            {% IFNOT user_agent_ie %}
-            <div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
-            {% ENDIF %}
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2"><br /><h4 style="white-space:nowrap;">Значения по умолчанию. Используются при оформлении заказа</h4></td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_country">Страна</label></td>
-          <td><input id="sites_client_country" name="form[sites_client_country]"  value="{FORM_SITES_CLIENT_COUNTRY}" maxlength="255" class="cornerAll"/></td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_region">Область</label></td>
-          <td><input id="sites_client_region" name="form[sites_client_region]"  value="{FORM_SITES_CLIENT_REGION}" maxlength="255" class="cornerAll"/></td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_city">Город</label></td>
-          <td><input id="sites_client_city" name="form[sites_client_city]"  value="{FORM_SITES_CLIENT_CITY}" maxlength="255" class="cornerAll"/></td>
-        </tr>
-        <tr>
-          <td><label for="sites_client_zip_code">Почтовый индекс</label></td>
-          <td><input id="sites_client_zip_code" name="form[sites_client_zip_code]"  value="{FORM_SITES_CLIENT_ZIP_CODE}" maxlength="6" class="digits cornerAll"/></td>
-        </tr>
-        <tr>
-          <td class="valignTop"><label for="sites_client_addr">Адрес доставки</label></td>
-          <td><textarea id="sites_client_addr" name="form[sites_client_addr]" >{FORM_SITES_CLIENT_ADDR}</textarea></td>
-        </tr>
-      </tbody>
-      <!-- END Тело таблицы. Форма настроек пользователя -->
-      
-      <!-- Низ таблицы. Кнопка отправки формы -->
-      <tfoot>
-        <tr>
-          <td colspan="3"><input type="submit" value="Сохранить" /></td>
-        </tr>
-        <tr>
-          <td colspan="3">
-            <a href="{USER_HISTORY_LIST_URL}">История заказов</a>
-          </td>
-        </tr>
-      </tfoot>
-
-    </table>
   </div>
-</form>
-<!-- end Контент -->
+</div>

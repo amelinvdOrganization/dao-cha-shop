@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="{FORALL_STYLES_PATH}nyroModal/nyroModal.full.css" type="text/css" />
   <link rel="stylesheet" href="{FORALL_STYLES_PATH}jquery-ui/jquery.ui.all.min.css" type="text/css" />
 
+  
   <!-- Если в тарифном плане подключен модуль отзывов о товаре -->
   {% IF TARIFF_FEATURE_GOODS_OPINION %}
     <!-- Если не выключен модуль отзывов о товаре, то загружаем css для рейтинга -->
@@ -52,301 +53,329 @@
   <!-- Скрипты магазина -->
   <script type="text/javascript" src="{ASSETS_JS_PATH}main.js"></script>
 
+
+  <!-- Скрипт для корректной работы A/B тестов -->
+  <script type="text/javascript" src="http://cdn.abtest.ru/js/14723.js"></script>
 </head>
-<body>
+<body lang="ru">
+  <div class="content">
+    <table class="contentTable" >
+      <thead>
+        <tr>
+          <td class="contentTableHeadMain" rowspan="2">
+            <!-- Название магазина -->
+            <h1><a href="http://{NET_DOMAIN}/">{SETTINGS_STORE_NAME}</a></h1>  
 
-  <div id="headerWrap">
-		<div id="header">
-			<a href="http://{NET_DOMAIN}/" title="Перейти на главную"><span id="logo"></span></a>
-			
-			<!-- Контакты -->
-      <div id="contactInfo">
-        <table>
-          <tr>
-            <td class="contactInfoContent">
-              <table>
-                <!-- Первый контактный телефон -->
-                {% IF SETTINGS_STORE_PHONE_NUMBER1 %}
-                  <tr>
-                    <td class="contentTableHeadMainPhone">
-                      <span class="contactInfoContentCountryCode">{SETTINGS_STORE_PHONE_COUNTRY_CODE1}</span>
-                      {% IF SETTINGS_STORE_PHONE_CITY_CODE1 %}({SETTINGS_STORE_PHONE_CITY_CODE1}){% ENDIF %}
-                      {SETTINGS_STORE_PHONE_NUMBER1}
-                    </td>
-                  </tr>
-                {% ENDIF %}
+            <!-- Контакты магазина -->
+            <table>
+              <!-- Первый контактный телефон -->
+              {% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+                <tr>
+                  <td class="contentTableHeadMainPhone">
+                    {SETTINGS_STORE_PHONE_COUNTRY_CODE1} {% IF SETTINGS_STORE_PHONE_CITY_CODE1 %}({SETTINGS_STORE_PHONE_CITY_CODE1}){% ENDIF %} {SETTINGS_STORE_PHONE_NUMBER1}
+                  </td>
+                </tr>
+              {% ENDIF %}
+              
+              <!-- Второй контактный телефон -->
+              {% IF SETTINGS_STORE_PHONE_NUMBER2 %}
+                <tr>
+                  <td class="contentTableHeadMainPhone">
+                    {SETTINGS_STORE_PHONE_COUNTRY_CODE2} {% IF SETTINGS_STORE_PHONE_CITY_CODE2 %}({SETTINGS_STORE_PHONE_CITY_CODE2}){% ENDIF %} {SETTINGS_STORE_PHONE_NUMBER2}
+                  </td>
+                </tr>
+              {% ENDIF %}
+            
+              <!-- Третий контактный телефон -->
+              {% IF SETTINGS_STORE_PHONE_NUMBER3 %}
+                <tr>
+                  <td class="contentTableHeadMainPhone">
+                    {SETTINGS_STORE_PHONE_COUNTRY_CODE3} {% IF SETTINGS_STORE_PHONE_CITY_CODE3 %}({SETTINGS_STORE_PHONE_CITY_CODE3}){% ENDIF %} {SETTINGS_STORE_PHONE_NUMBER3}
+                  </td>
+                </tr>
+              {% ENDIF %}
 
-                <!-- Второй контактный телефон -->
-                {% IF SETTINGS_STORE_PHONE_NUMBER2 %}
-                  <tr>
-                    <td class="contentTableHeadMainPhone">
-                      <span class="contactInfoContentCountryCode">{SETTINGS_STORE_PHONE_COUNTRY_CODE2}</span>
-                      {% IF SETTINGS_STORE_PHONE_CITY_CODE2 %}({SETTINGS_STORE_PHONE_CITY_CODE2}){% ENDIF %}
-                      {SETTINGS_STORE_PHONE_NUMBER2}
-                    </td>
-                  </tr>
-                {% ENDIF %}
-
-                <!-- Третий контактный телефон -->
-                {% IF SETTINGS_STORE_PHONE_NUMBER3 %}
-                  <tr>
-                    <td class="contentTableHeadMainPhone">
-                      <span class="contactInfoContentCountryCode">{SETTINGS_STORE_PHONE_COUNTRY_CODE3}</span>
-                      {% IF SETTINGS_STORE_PHONE_CITY_CODE3 %}({SETTINGS_STORE_PHONE_CITY_CODE3}){% ENDIF %}
-                      {SETTINGS_STORE_PHONE_NUMBER3}
-                    </td>
-                  </tr>
-                {% ENDIF %}
-
-                <!-- Время работы магазина -->
-                {% IF SETTINGS_STORE_WORK_TIME %}
-                  <tr>
-                    <td class="contentTableHeadMainWorkTime">
-                      {SETTINGS_STORE_WORK_TIME}
-                    </td>
-                  </tr>
-                {% ENDIF %}
-                
-                <!-- ICQ номер -->
-                {% IF SETTINGS_STORE_ICQ %}
-                  <tr>
-                    <td class="contentTableHeadMainIcq">
-                      <img class="valignMiddle" src="http://wwp.icq.com/scripts/online.dll?icq={SETTINGS_STORE_ICQ_ONLY_DIGITS}&img=27" alt="Статус" width="16" height="16" />
-                      <span class="valignMiddle">{SETTINGS_STORE_ICQ}</span>
-                    </td>
-                  </tr>
-                {% ENDIF %}
-              </table>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <!-- end Контакты -->
-
-			<h2 id="title">Ваш слоган здесь</h2>
-			
-			<div id="mainNav">
-				<table>
-				  <tr>
-				    {% FOR menu %}
+              <!-- Время работы магазина -->
+              {% IF SETTINGS_STORE_WORK_TIME %}
+                <tr>
+                  <td class="contentTableHeadMainWorkTime">
+                    {SETTINGS_STORE_WORK_TIME}
+                  </td>
+                </tr>
+              {% ENDIF %}
+              
+              <!-- ICQ номер -->
+              {% IF SETTINGS_STORE_ICQ %}
+                <tr>
+                  <td class="contentTableHeadMainIcq">
+                    <img class="valignMiddle" src="http://wwp.icq.com/scripts/online.dll?icq={SETTINGS_STORE_ICQ_ONLY_DIGITS}&img=27" alt="Статус" width="16" height="16" />
+                    <span class="valignMiddle">{SETTINGS_STORE_ICQ}</span>
+                  </td>
+                </tr>
+              {% ENDIF %}
+            </table>
+          
+          </td>
+          
+          <!-- Верхний блок навигации -->
+          <td class="contentTableHeadNavigation">
+            {% FOR menu %}
               {% FOR header %}
                 {% FOR links %}
-    					    <td {% IF menu.header.links.first %}class="first"{% ELSEIF menu.header.links.last %}class="last"{% ENDIF %}>
-    					      <div>
-    					        <a href="{menu.header.links.URL}" {% IF menu.header.links.SELECTED %}class="selected"{% ENDIF %} {% IF menu.header.links.TITLE %}title="{menu.header.links.TITLE}"{% ENDIF %}>{menu.header.links.NAME}</a>
-    					      </div>
-  					      </td>
-    					  {% ENDFOR %}
+                  <a href="{menu.header.links.URL}" {% IF menu.header.links.SELECTED %}class="selected"{%ENDIF%} {% IF menu.header.links.TITLE %}title="{menu.header.links.TITLE}"{% ENDIF %}>{menu.header.links.NAME}</a> {% IF menu.header.links.rindex>1 %}|{% ENDIF %}
+                {% ENDFOR %}
               {% ENDFOR %}
             {% ENDFOR %}
-				  </tr>
-				</table>
-			</div>
-			<!-- Поиск -->
-			<div id="searchPanel">
-				<form action="http://{NET_DOMAIN}/search" method="post">
-  				<p>
-  					<label for="keywords">Поиск</label>
-  					<input type="text" maxlength="100" id="keywords" name="q" value="{SEARCH_QUERY}" />
-  					<input type="image" value="Search" title="search" alt="search" src="{ASSETS_IMAGES_PATH}search_button.gif" id="submit" name="submit" />
-  			  </p>
-				</form>
-			</div>
-			<!-- end Поиск -->
-			
-			<!-- Корзина -->
-      <div id="cartInfo">
-        <a href="{CART_URL}">в корзине товаров на</a>:
-        <span id="cartSum">
-          {% IF cart_count_empty %}
-            <span class="red">0</span> {CURRENCY_NAME}
-          {% ELSE %}
-            {% FOR cart_sum %}
-              <span>{cart_sum.NOW | money_format}</span><br />
-            {% ENDFOR %}
-          {% ENDIF %}
-        </span>
-      </div>
-      <!-- end Корзина -->
-			
-		</div>
-	</div>
-	
-	<div id="contentWrap">
-		<div id="content">
-		
-		  <table id="contentMainTb">
-		    <tr>
-		      <td id="leftMenuBlockWrap"> 
-		        <div id="leftMenuBlock">	
-      				<!-- Каталог -->
-      				<h4 class="contentTbodyCatalogHeader">Каталог товаров</h4>
-              <ul id="subNavigation">
-      				  {%IFNOT catalog_empty %}
-                  {% FOR catalog %}
-                    {% IFNOT catalog.HIDE %}
-                      <li>
-                        <a href="{catalog.URL}" 
-                          {% IF catalog.LEVEL>0%}style="padding-left:{catalog.LEVEL | multiply("20")}px"{% ENDIF %}
-                          {% IF catalog.CURRENT %}class="selected"{% ENDIF %}
-                        >{catalog.NAME}</a>
-                      </li>
-                    {% ENDIF %}
-                  {% ENDFOR %}
+          </td>
+          
+          <!-- Авторизационная информация клиента -->
+          <td>
+            {% IF TARIFF_FEATURE_CLIENT_ROOM %}
+              <div class="contentTableHeadUserInfo">
+                {% IF CLIENT_IS_LOGIN %}
+                  Здравствуйте, <a href="{USER_SETTINGS_URL}">{CLIENT_NAME}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{USER_LOGOUT_URL}">Выйти</a><br />
+                {% ELSE %}
+                  <a href="{USER_LOGIN_URL}">Вход с паролем</a> |
+                  <a href="{USER_REGISTER_URL}">Регистрация</a>
                 {% ENDIF %}
-      				</ul>
-      				<!-- end Каталог -->
-      
-              <!-- Если в тарифном плане подключен модуль фильтров по товарам -->
-              {% IF TARIFF_FEATURE_GOODS_FILTERS %}
-                
-                <!-- Фильтры по товарам. Появляются только на странице категории и поиска по товарам -->
-                {% IF SHOW_GOODS_FILTERS %}
-                  <br /><h4 class="contentTbodyCatalogHeader noBorder">Фильтры по товарам</h4>
+              </div>
+            {% ENDIF %}
+          </td>
+        </tr>
         
-                  <!-- Форма поиска отправляет всегда на ту же страницу, на которой находится пользователь -->
-                  <form action="" method="get">
-                    <div class="contentTbodySearchFilterBlock cornerAll">
-                      <!-- Фильтры по характеристикам товаров (Например: Производитель, разрешение экрана, заряд батареи) -->
-                      {% FOR filter_attr_list %}
-                        <em>{filter_attr_list.NAME}</em>
-                        <div class="contentTbodySearchFilterBlockValues">
-                        {% FOR values %}
-                          <input type="checkbox" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" {% IF filter_attr_list.values.CHECKED %}checked="checked"{% ENDIF %} /> 
-                          <label for="filterAttrVal{filter_attr_list.values.ID}">{filter_attr_list.values.VALUE}</label><br />
-                        {% ENDFOR %}
-                        </div>
-                      {% ENDFOR %}
-        
-                      <!-- Фильтры по свойствам товарных модификаций (Например: Цвет, размер, модификация) -->
-                      {% FOR filter_prop_list %}
-                        <em>{filter_prop_list.NAME}</em>
-                        <div class="contentTbodySearchFilterBlockValues">
-                        {% FOR values %}
-                          <input type="checkbox" name="form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterPropVal{filter_prop_list.values.ID}" {% IF filter_prop_list.values.CHECKED %}checked="checked"{% ENDIF %} > 
-                          <label for="filterPropVal{filter_prop_list.values.ID}">{filter_prop_list.values.VALUE}</label><br />
-                        {% ENDFOR %}
-                        </div>
-                      {% ENDFOR %}
-                    </div>
-                  </form>
-                {% ENDIF %}
-              {% ENDIF %}
-      				<!-- END Если в тарифном плане подключен модуль фильтров по товарам -->
-      
-      				<!-- Если в тарифном плане подключен модуль сравнения товаров -->
-              {% IF TARIFF_FEATURE_GOODS_COMPARE %}
-                <!-- Если не выключен модуль сравнения товаров, то покажем этот блок -->
-                {% IFNOT SETTINGS_COMPARE_DISABLE %}
-                  <br /><h4 class="contentTbodyCatalogHeader"><a href="{COMPARE_URL}">Сравнение товаров</a></h4>
-                  <div class="contentTbodyCompare">
-                    {%IF COMPARE_GOODS_COUNT=0 %}
-                      <em class="contentTbodyCompareEmpty">Нет товаров для сравнения</em>
-                    {% ELSE %}
-                      <em>Товаров на сравнении: {COMPARE_GOODS_COUNT} шт.</em><br />
-                      <a class="contentTbodyCompareDetails" href="{COMPARE_URL}">Посмотреть</a>
-                    {% ENDIF %}
-                  </div>
-                {% ENDIF %}
-              {% ENDIF %}
-              <!-- END Если в тарифном плане подключен модуль фильтров по товарам -->
-      
-      				<!-- Если в тарифном плане подключен модуль новостей -->
-              {% IF TARIFF_FEATURE_NEWS %}
-                <!-- Все новости -->
-                {%IFNOT news_list_all_empty %}
-                  <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_ALL_URL}">Лента новостей</a></h4>
-                  <div class="contentTbodyNews">
-        
-                    <!-- Список новостей магазина -->
-                    <div class="contentTbodyNewsBlock">
-                      {% FOR news_list_all %}
-                        <div class="contentTbodyNewsBlockItem"> 
-                          <a href="{news_list_all.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_all.TITLE}</a><br />
-                          
-                          <div class="newsListBlockItemPreview">{news_list_all.TEXT_SHORT} </div>
-                          {% IF news_list_all.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_all.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
-                        </div>
-                      {% ENDFOR %}
-                    </div>
-        
-                    <a href="{NEWS_ALL_URL}">Архив новостей</a>
-                  </div>
-                {% ENDIF %}
-                
-                <!-- Новости магазина -->
-                {%IFNOT news_list_shop_empty %}
-                  <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_SHOP_URL}">Новости магазина</a></h4>
-                  <div class="contentTbodyNews">
-        
-                    <!-- Список новостей магазина -->
-                    <div class="contentTbodyNewsBlock">
-                      {% FOR news_list_shop %}
-                        <div class="contentTbodyNewsBlockItem"> 
-                          <a href="{news_list_shop.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_shop.TITLE}</a><br />
-                          
-                          <div class="newsListBlockItemPreview">{news_list_shop.TEXT_SHORT} </div>
-                          {% IF news_list_shop.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_shop.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
-                        </div>
-                      {% ENDFOR %}
-                    </div>
-        
-                    <a href="{NEWS_SHOP_URL}">Архив новостей</a>
-                  </div>
-                {% ENDIF %}
-                
-                <!-- Статьи -->
-                {%IFNOT news_list_articles_empty %}
-                  <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_ARTICLES_URL}">Статьи</a></h4>
-                  <div class="contentTbodyNews">
-        
-                    <!-- Список статей -->
-                    <div class="contentTbodyNewsBlock">
-                      {% FOR news_list_articles %}
-                        <div class="contentTbodyNewsBlockItem"> 
-                          <a href="{news_list_articles.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_articles.TITLE}</a><br />
-                          
-                          <div class="newsListBlockItemPreview">{news_list_articles.TEXT_SHORT} </div>
-                          {% IF news_list_articles.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_articles.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
-                        </div>
-                      {% ENDFOR %}
-                    </div>
-        
-                    <a href="{NEWS_ARTICLES_URL}">Архив статей</a>
-                  </div>
-                {% ENDIF %}
-                
-                <!-- Материалы СМИ -->
-                {%IFNOT news_list_mass_media_empty %}
-                  <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_MASS_MEDIA_URL}">Новости СМИ</a></h4>
-                  <div class="contentTbodyNews">
-        
-                    <!-- Список статей -->
-                    <div class="contentTbodyNewsBlock">
-                      {% FOR news_list_mass_media %}
-                        <div class="contentTbodyNewsBlockItem"> 
-                          <a href="{news_list_mass_media.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_mass_media.TITLE}</a><br />
-                          
-                          <div class="newsListBlockItemPreview">{news_list_mass_media.TEXT_SHORT} </div>
-                          {% IF news_list_mass_media.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_mass_media.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
-                        </div>
-                      {% ENDFOR %}
-                    </div>
-        
-                    <a href="{NEWS_MASS_MEDIA_URL}">Архив новостей</a>
-                  </div>
-                {% ENDIF %}
-              {% ENDIF %}
-      			</div>
-		      </td>
-		      <td id="primaryContent">
-    			  {BODY}
+        <tr>
+          
+          <!-- Поисковая форма -->
+          <td class="Search">
+              <form action="http://{NET_DOMAIN}/search" class="SearchForm">
+                <table class="SearchFormTable">
+                  <tr>
+                    <td class="cell1"><input name="q" value="{SEARCH_QUERY}" class="SearchFormText cornerAll" /></td>
+                    <td class="cell2"><input type="submit" value="Найти" class="SearchFormSubmit" /></td>
+                  </tr>
+                </table>
+              </form>
+          </td>
+          
+          <!-- Корзина -->
+          <td class="contentTableHeadCart">
+            <table>
+              <tr>
+                <td rowspan="2" class="valignMiddle"><a href="{CART_URL}"><span class="orderIcon cart"></span></a></td>
+                <td>Товаров в <a href="{CART_URL}" class="underline"> корзине</a>:</td>
+                <td id="cartCount">
+                  {% IF cart_count_empty %}
+                    <span class="red">0</span> шт.
+                  {% ELSE %}
+                    {% FOR cart_count %}
+                      {cart_count.COUNT}{cart_count.MEASURE_NAME}{% IFNOT cart_count.last %},{% ENDIF %}
+                    {% ENDFOR %}
+                  {% ENDIF %}
+                </td>
+              </tr>
+              <tr>
+                <td>На общую сумму:</td>
+                <td id="cartSum">
+                  {% IF cart_count_empty %}
+                    <span class="red">0</span> {CURRENCY_NAME}
+                  {% ELSE %}
+                    {% FOR cart_sum %}
+                      {cart_sum.NOW | money_format}<br />
+                    {% ENDFOR %}
+                  {% ENDIF %}
+                </td>
+              </tr>
+            </table>
+          </td>
 
-    			  <!-- Всевозможные списки товаров -->
+        </tr>
+        
+      </thead>
+      
+      <tbody>
+        <tr>
+          <td class="contentTbodyCatalog">
+            <!-- Каталог товаров -->
+            <h4 class="contentTbodyCatalogHeader">Каталог товаров</h4>
+            {%IFNOT catalog_empty %}
+              {% FOR catalog %}
+                {% IFNOT catalog.HIDE %}
+                  {% IF catalog.FIRST %}<ul>{% ENDIF %}
+                     <li>
+                       <a href="{catalog.URL}"
+                          {% IF catalog.CURRENT %}
+                            class="contentTbodyCatalogCurent"
+                          {% ELSEIF catalog.CURRENT_PARENT %}
+                            class="contentTbodyCatalogCurentBranch"
+                          {% ENDIF %}
+                       >
+                        {catalog.NAME}
+
+                        <!-- Отображение количества товаров в категории -->
+                        {% IF catalog.GOODS_COUNT>0 %}
+                         ({catalog.GOODS_COUNT})
+                        {% ENDIF %}
+                      </a>
+                    {% IF catalog.ISSET_SUB=0 %}</li>{% ENDIF %}
+                  {% IF catalog.LAST %}
+                    {% FOR out %}</ul>{%IFNOT catalog.out.LAST %}</li>{% ENDIF %}{% ENDFOR %}
+                  {% ENDIF %}
+                {% ENDIF %}
+              {% ENDFOR %}
+            {% ENDIF %}
+
+            <!-- Если в тарифном плане подключен модуль фильтров по товарам -->
+            {% IF TARIFF_FEATURE_GOODS_FILTERS %}
+
+              <!-- Фильтры по товарам. Появляются только на странице категории и поиска по товарам -->
+              {% IF SHOW_GOODS_FILTERS %}
+                <br /><h4 class="contentTbodyCatalogHeader noBorder">Фильтры по товарам</h4>
+                
+                <!-- Форма поиска отправляет всегда на ту же страницу, на которой находится пользователь -->
+                <form action="" method="get">
+                  <div class="contentTbodySearchFilterBlock cornerAll">
+                    
+                    <!-- Фильтры по характеристикам товаров (Например: Производитель, разрешение экрана, заряд батареи) -->
+                    {% FOR filter_attr_list %}
+                      <em>{filter_attr_list.NAME}</em>
+                      <div class="contentTbodySearchFilterBlockValues">
+                      {% FOR values %}
+                        <input type="checkbox" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" {% IF filter_attr_list.values.CHECKED %}checked="checked"{% ENDIF %} /> 
+                        <label for="filterAttrVal{filter_attr_list.values.ID}">{filter_attr_list.values.VALUE}</label><br />
+                      {% ENDFOR %}
+                      </div>
+                    {% ENDFOR %}
+    
+                    <!-- Фильтры по свойствам товарных модификаций (Например: Цвет, размер, модификация) -->
+                    {% FOR filter_prop_list %}
+                      <em>{filter_prop_list.NAME}</em>
+                      <div class="contentTbodySearchFilterBlockValues">
+                      {% FOR values %}
+                        <input type="checkbox" name="form[filter][prop][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterPropVal{filter_prop_list.values.ID}" {% IF filter_prop_list.values.CHECKED %}checked="checked"{% ENDIF %} > 
+                        <label for="filterPropVal{filter_prop_list.values.ID}">{filter_prop_list.values.VALUE}</label><br />
+                      {% ENDFOR %}
+                      </div>
+                    {% ENDFOR %}
+                  </div>
+                </form>
+              {% ENDIF %}
+            {% ENDIF %}
+            <!-- END Если в тарифном плане подключен модуль фильтров по товарам -->
+            
+            <!-- Если в тарифном плане подключен модуль сравнения товаров -->
+            {% IF TARIFF_FEATURE_GOODS_COMPARE %}
+              <!-- Если не выключен модуль сравнения товаров, то покажем этот блок -->
+              {% IFNOT SETTINGS_COMPARE_DISABLE %}
+                <br /><h4 class="contentTbodyCatalogHeader"><a href="{COMPARE_URL}">Сравнение товаров</a></h4>
+                <div class="contentTbodyCompare">
+                  {%IF COMPARE_GOODS_COUNT=0 %}
+                    <em class="contentTbodyCompareEmpty">Нет товаров для сравнения</em>
+                  {% ELSE %}
+                    <em>Товаров на сравнении: {COMPARE_GOODS_COUNT} шт.</em><br />
+                    <a class="contentTbodyCompareDetails" href="{COMPARE_URL}">Посмотреть</a>
+                  {% ENDIF %}
+                </div>
+              {% ENDIF %}
+            {% ENDIF %}
+            <!-- END Если в тарифном плане подключен модуль фильтров по товарам -->
+            
+            <!-- Если в тарифном плане подключен модуль новостей -->
+            {% IF TARIFF_FEATURE_NEWS %}
+              <!-- Все новости -->
+              {%IFNOT news_list_all_empty %}
+                <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_ALL_URL}">Лента новостей</a></h4>
+                <div class="contentTbodyNews">
+
+                  <!-- Список новостей магазина -->
+                  <div class="contentTbodyNewsBlock">
+                    {% FOR news_list_all %}
+                      <div class="contentTbodyNewsBlockItem"> 
+                        <a href="{news_list_all.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_all.TITLE}</a><br />
+                        
+                        <div class="newsListBlockItemPreview">{news_list_all.TEXT_SHORT} </div>
+                        {% IF news_list_all.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_all.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
+                      </div>
+                    {% ENDFOR %}
+                  </div>
+
+                  <a href="{NEWS_ALL_URL}">Архив новостей</a>
+                </div>
+              {% ENDIF %}
+
+              <!-- Новости магазина -->
+              {%IFNOT news_list_shop_empty %}
+                <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_SHOP_URL}">Новости магазина</a></h4>
+                <div class="contentTbodyNews">
+
+                  <!-- Список новостей магазина -->
+                  <div class="contentTbodyNewsBlock">
+                    {% FOR news_list_shop %}
+                      <div class="contentTbodyNewsBlockItem"> 
+                        <a href="{news_list_shop.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_shop.TITLE}</a><br />
+                        
+                        <div class="newsListBlockItemPreview">{news_list_shop.TEXT_SHORT} </div>
+                        {% IF news_list_shop.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_shop.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
+                      </div>
+                    {% ENDFOR %}
+                  </div>
+
+                  <a href="{NEWS_SHOP_URL}">Архив новостей</a>
+                </div>
+              {% ENDIF %}
+
+              <!-- Статьи -->
+              {%IFNOT news_list_articles_empty %}
+                <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_ARTICLES_URL}">Статьи</a></h4>
+                <div class="contentTbodyNews">
+  
+                  <!-- Список статей -->
+                  <div class="contentTbodyNewsBlock">
+                    {% FOR news_list_articles %}
+                      <div class="contentTbodyNewsBlockItem"> 
+                        <a href="{news_list_articles.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_articles.TITLE}</a><br />
+                        
+                        <div class="newsListBlockItemPreview">{news_list_articles.TEXT_SHORT} </div>
+                        {% IF news_list_articles.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_articles.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
+                      </div>
+                    {% ENDFOR %}
+                  </div>
+
+                  <a href="{NEWS_ARTICLES_URL}">Архив статей</a>
+                </div>
+              {% ENDIF %}
+              
+              <!-- Материалы СМИ -->
+              {%IFNOT news_list_mass_media_empty %}
+                <br /><h4 class="contentTbodyCatalogHeader"><a href="{NEWS_MASS_MEDIA_URL}">Новости СМИ</a></h4>
+                <div class="contentTbodyNews">
+  
+                  <!-- Список статей -->
+                  <p class="contentTbodyNewsBlock">
+                    {% FOR news_list_mass_media %}
+                      <div class="contentTbodyNewsBlockItem"> 
+                        <a href="{news_list_mass_media.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_mass_media.TITLE}</a><br />
+                        
+                        <div class="newsListBlockItemPreview">{news_list_mass_media.TEXT_SHORT} </div>
+                        {% IF news_list_mass_media.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_mass_media.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
+                      </div>
+                    {% ENDFOR %}
+                  </p>
+  
+                  <a href="{NEWS_MASS_MEDIA_URL}">Архив новостей</a>
+                </div>
+              {% ENDIF %}
+            {% ENDIF %}
+          </td>
+
+          <td colspan="2" class="valignTop">
+            {BODY}
+            
+            
+            <!-- Всевозможные списки товаров -->
             {% IF index_page %}
               <!-- Список новинок на главной -->
               {% IFNOT index_page_new_goods_empty %}
-                <h3><a href="{CATALOG_NEW_URL}" class="indexPage">Новинки</a></h3>
+                <br /><h3><a href="{CATALOG_NEW_URL}" class="indexPage">Новинки</a></h3>
                 <table>
                   <tr>
                     {% FOR index_page_new_goods %}
@@ -354,16 +383,20 @@
                         <div class="goodsListItemBlock withBorder cornerAll">
                   		    <div class="goodsListItemImage"><a href="{index_page_new_goods.URL}"><img src="{% IF index_page_new_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-small.png{% ELSE %}{index_page_new_goods.IMAGE_SMALL}{% ENDIF %}" alt="{index_page_new_goods.NAME}" /></a></div>
                   		    <h3 class="goodsListItemName"><a href="{index_page_new_goods.URL}">{index_page_new_goods.NAME}</a></h3>
-                		      <a href="{index_page_new_goods.URL_MIN_PRICE_NOW}">{index_page_new_goods.MIN_PRICE_NOW | money_format}</a>
-                  		    {% IF index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_new_goods.MIN_PRICE_NOW %}
-                            <br /><a href="{index_page_new_goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
-                          {% ELSEIF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW %}
-                            <br /><a href="{index_page_new_goods.URL_MIN_PRICE_OLD}" class="lineThrough">{index_page_new_goods.MIN_PRICE_OLD | money_format}</a>
-                          {% ENDIF %}
+                  		    <div class="goodsListItemPriceNew">
+                    		    <a href="{index_page_new_goods.URL_MIN_PRICE_NOW}">{index_page_new_goods.MIN_PRICE_NOW | money_format}</a>
+                    		  </div>  
+                    		  <div class="goodsListItemPriceOld">
+                  		      {% IF index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_new_goods.MIN_PRICE_NOW %}
+                              <a href="{index_page_new_goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{index_page_new_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
+                            {% ELSEIF index_page_new_goods.MIN_PRICE_OLD>index_page_new_goods.MIN_PRICE_NOW %}
+                              <a href="{index_page_new_goods.URL_MIN_PRICE_OLD}" class="lineThrough">{index_page_new_goods.MIN_PRICE_OLD | money_format}</a>
+                            {% ENDIF %}
+                  		    </div>
                         </div>
                       </td>
-                  		{index_page_new_goods.index | is_divided("4","</tr><tr>","")}
-                  	{% ENDFOR index_page_new_goods %} 
+                  		{index_page_new_goods.index | is_divided("5","</tr><tr>","")}
+                  	{% ENDFOR index_page_new_goods %}
                   </tr>
                 </table>
               {% ENDIF %}       
@@ -371,7 +404,7 @@
               
               <!-- Список хитов продаж на главной -->
               {% IFNOT index_page_favorites_goods_empty %}
-                <h3><a href="{CATALOG_TOP_SALES_URL}" class="indexPage">Хиты продаж</a></h3>
+                <br /><h3><a href="{CATALOG_TOP_SALES_URL}" class="indexPage">Хиты продаж</a></h3>
                 <table>
                   <tr>
                     {% FOR index_page_favorites_goods %}
@@ -379,24 +412,28 @@
                         <div class="goodsListItemBlock withBorder cornerAll">
                   		    <div class="goodsListItemImage"><a href="{index_page_favorites_goods.URL}"><img src="{% IF index_page_favorites_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-small.png{% ELSE %}{index_page_favorites_goods.IMAGE_SMALL}{% ENDIF %}" alt="{index_page_favorites_goods.NAME}" /></a></div>
                   		    <h3 class="goodsListItemName"><a href="{index_page_favorites_goods.URL}">{index_page_favorites_goods.NAME}</a></h3>
-                		      <a href="{index_page_favorites_goods.URL_MIN_PRICE_NOW}">{index_page_favorites_goods.MIN_PRICE_NOW | money_format}</a>
-                		      {% IF index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_favorites_goods.MIN_PRICE_NOW %}
-                            <br /><a href="{index_page_favorites_goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
-                          {% ELSEIF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW %}
-                            <br /><a href="{index_page_favorites_goods.URL_MIN_PRICE_OLD}" class="lineThrough">{index_page_favorites_goods.MIN_PRICE_OLD | money_format}</a>
-                          {% ENDIF %}
+                  		    <div class="goodsListItemPriceNew">
+                    		    <a href="{index_page_favorites_goods.URL_MIN_PRICE_NOW}">{index_page_favorites_goods.MIN_PRICE_NOW | money_format}</a>
+                    		  </div>  
+                    		  <div class="goodsListItemPriceOld">
+                  		      {% IF index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_favorites_goods.MIN_PRICE_NOW %}
+                              <a href="{index_page_favorites_goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{index_page_favorites_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
+                            {% ELSEIF index_page_favorites_goods.MIN_PRICE_OLD>index_page_favorites_goods.MIN_PRICE_NOW %}
+                              <a href="{index_page_favorites_goods.URL_MIN_PRICE_OLD}" class="lineThrough">{index_page_favorites_goods.MIN_PRICE_OLD | money_format}</a>
+                            {% ENDIF %}
+                  		    </div>
                         </div>
                       </td>
-                  		{index_page_favorites_goods.index | is_divided("4","</tr><tr>","")}
-                  	{% ENDFOR index_page_favorites_goods %} 
+                  		{index_page_favorites_goods.index | is_divided("5","</tr><tr>","")}
+                  	{% ENDFOR index_page_favorites_goods %}
                   </tr>
                 </table>
               {% ENDIF %}       
               <!-- end Список хитов продаж на главной -->
-    
+
               <!-- Список товаров на главной -->
               {% IFNOT index_page_goods_empty %}
-                <h3>Интересные предложения</h3>
+                <br /><h3>Интересные предложения</h3>
                 <table>
                   <tr>
                     {% FOR index_page_goods %}
@@ -404,47 +441,55 @@
                         <div class="goodsListItemBlock withBorder cornerAll">
                   		    <div class="goodsListItemImage"><a href="{index_page_goods.URL}"><img src="{% IF index_page_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-small.png{% ELSE %}{index_page_goods.IMAGE_SMALL}{% ENDIF %}" alt="{index_page_goods.NAME}" /></a></div>
                   		    <h3 class="goodsListItemName"><a href="{index_page_goods.URL}">{index_page_goods.NAME}</a></h3>
-                		      <a href="{index_page_goods.URL_MIN_PRICE_NOW}">{index_page_goods.MIN_PRICE_NOW | money_format}</a>
-                		      {% IF index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_goods.MIN_PRICE_NOW %}
-                            <br /><a href="{index_page_goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
-                          {% ELSEIF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW %}
-                            <br /><a href="{index_page_goods.URL_MIN_PRICE_OLD}" class="lineThrough">{index_page_goods.MIN_PRICE_OLD | money_format}</a>
-                          {% ENDIF %}
+                  		    <div class="goodsListItemPriceNew">
+                    		    <a href="{index_page_goods.URL_MIN_PRICE_NOW}">{index_page_goods.MIN_PRICE_NOW | money_format}</a>
+                    		  </div>  
+                    		  <div class="goodsListItemPriceOld">
+                  		      {% IF index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>index_page_goods.MIN_PRICE_NOW %}
+                              <a href="{index_page_goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{index_page_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
+                            {% ELSEIF index_page_goods.MIN_PRICE_OLD>index_page_goods.MIN_PRICE_NOW %}
+                              <a href="{index_page_goods.URL_MIN_PRICE_OLD}" class="lineThrough">{index_page_goods.MIN_PRICE_OLD | money_format}</a>
+                            {% ENDIF %} 
+                  		    </div>
                         </div>
                       </td>
-                  		{index_page_goods.index | is_divided("4","</tr><tr>","")}
-                  	{% ENDFOR index_page_goods %} 
+                  		{index_page_goods.index | is_divided("5","</tr><tr>","")}
+                  	{% ENDFOR index_page_goods %}
                   </tr>
                 </table>
               {% ENDIF %}       
               <!-- end Список товаров на главной -->
             {% ENDIF %}
             <!-- END Всевозможные списки товаров -->
-		      </td>
-		    </tr>
-		  </table>
-		</div>
-  </div >
+            
+          </td>
+        </tr>
+      </tbody>
+      
+      <!-- Подвал сайта -->
+      <tbody>
+        <tr>
+          <td colspan="3">
+            <div class="alignCenter">
+            {% FOR menu %}
+              {% FOR footer %}
+                {% FOR links %}
+                  <a href="{menu.footer.links.URL}" {% IF menu.footer.links.SELECTED %}class="selected"{%ENDIF%} {% IF menu.footer.links.TITLE %}title="{menu.footer.links.TITLE}"{% ENDIF %}>{menu.footer.links.NAME}</a> {% IF menu.footer.links.rindex>1 %}|{% ENDIF %}
+                {% ENDFOR %}
+              {% ENDFOR %}
+            {% ENDFOR %}
+            </div>
+            <div class="alignCenter">&copy; {DATE_YEAR} &mdash; &laquo;{SETTINGS_STORE_NAME}&raquo; {SETTINGS_STORE_REGION}</div>
+            <div class="alignCenter">{SETTINGS_STORE_ORG_NAME}</div>            
+            <div class="alignCenter">{SETTINGS_STORE_HTML_CODE}</div>            
+          </td>
+        </tr>
+      </tbody>
+      <!-- END Подвал сайта -->
+      
+    </table>
 
-  <!-- Подвал сайта -->
-  <div id="footer">
-    <br />
-    <span>
-    {% FOR menu %}
-      {% FOR footer %}
-        {% FOR links %}<a href="{menu.footer.links.URL}" {% IF menu.footer.links.SELECTED %}class="selected"{%ENDIF%} {% IF menu.footer.links.TITLE %}title="{menu.footer.links.TITLE}"{% ENDIF %}>{menu.footer.links.NAME}</a>{% IF menu.footer.links.rindex>1 %}&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;{% ENDIF %}{% ENDFOR %}
-      {% ENDFOR %}
-    {% ENDFOR %}
-    </span>
-    <br /><br />
-    <div class="footnote">
-       &copy; {DATE_YEAR} &laquo;{SETTINGS_STORE_NAME}&raquo;&nbsp;&nbsp;&nbsp;{SETTINGS_STORE_ORG_NAME}<br />
-      Все права защищены <br />
-      {SETTINGS_STORE_REGION}<br />
-      {SETTINGS_STORE_HTML_CODE}<br />
-      {COPYRIGHT_FOR_DESIGN_MOKKO}
-    </div>
-    
   </div>
+  {COPYRIGHT_FOR_DESIGN_LIGHT}
 </body>
 </html>

@@ -1,5 +1,7 @@
 <div class="alignCenter">
   {% IF FORM_NOTICE %}<h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}errorMessage{% ENDIF %}">{FORM_NOTICE | nl2br}</h3>{% ENDIF %}
+  <br />
+
   <p>Сейчас в корзине товаров 
   <strong class="newCartCount">
     {% IF cart_count_empty %}
@@ -20,8 +22,10 @@
       {% ENDFOR %}
     {% ENDIF %}
   </strong>
-  </p>
-  <p>Вы можете перейти к оформлению заказа или продолжить покупки.</p>
+  </p><br /><br />
+
+
+  <p>Вы можете перейти к оформлению заказа или продолжить покупки.</p><br />
   <p><a class="messageBoxToCart" href="{CART_URL}">Перейти в корзину</a> &nbsp; &nbsp; <a class="nyroModalClose" href="#">Продолжить покупки</a></p>
 </div>
 
