@@ -1,0 +1,46 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <a href="{NEWS_SECTION_URL}">{NEWS_SECTION_NAME}</a> &gt; <strong>{NEWS_TITLE}</strong></p>
+<h1>{NEWS_TITLE}</h1>
+
+<div class="htmlDataBlock">
+  {NEWS_TEXT_LARGE}
+</div>
+
+<!-- Короткое SEO-описание -->
+{% IF NEWS_SEO_DESCRIPTION_SHORT %}
+  <p>{NEWS_SEO_DESCRIPTION_SHORT}</p>
+{% ENDIF %}
+<!-- END Короткое SEO-описание -->
+
+<!-- Полное SEO-описание -->
+{% IF NEWS_SEO_DESCRIPTION_LARGE %}
+  <div class="htmlDataBlock">
+    {NEWS_SEO_DESCRIPTION_LARGE}
+  </div>
+{% ENDIF %}
+<!-- END Полное SEO-описание -->
+    
+<!-- Список прикрепленный файлов -->
+{% IFNOT news_files_empty %}
+<table class="newsListBlockItemFiles">
+  <tbody>
+    {% FOR news_files %}
+    <tr rel="{news_files.ID}">
+      <td><i class="file_extension_icon {news_files.FORMAT}" title="{% IF news_files.FORMAT_DESC %}{news_files.FORMAT_DESC}{% ELSE %}{news_files.FORMAT}{% ENDIF %}"></i></td>
+      <td><a href="{news_files.URL}" class="name" target="_blank" title="Открыть файл &laquo;{news_files.DESC_OR_NAME}&raquo; в новом окне">{news_files.DESC_AND_NAME}</a></td>
+    </tr>
+    {% ENDFOR %}
+  </tbody>
+</table>
+{% ENDIF %}
+
+{% IF NEWS_SHOW_TIME %}<em class="newsListBlockItemTime">{NEWS_TIME | date("d.m.Y")}</em><br /><br />{% ENDIF %} 
+
+<!-- Ссылка на страницу новостей, откуда пришел пользователь -->
+<a href="{NEWS_SECTION_URL}">
+  {% IF NEWS_SECTION_ID=1 %}К другим новостям магазина
+  {% ELSEIF NEWS_SECTION_ID=2 %}К другим статьям
+  {% ELSEIF NEWS_SECTION_ID=3 %}К другим материалам СМИ
+  {% ELSE %}К другим новостям
+  {% ENDIF %}
+</a>
+  

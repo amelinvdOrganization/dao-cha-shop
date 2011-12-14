@@ -1,0 +1,183 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> 
+
+
+<!-- Если отображаем полный каталог товаров, без указания категории -->
+      {% IF IS_FULL_CATALOG %}
+        &gt; <strong>Каталог товаров</strong>
+      <!-- Если отображаем товары в категории -->
+      {% ELSE %}
+        &gt; <a href="{CATALOG_URL}" >Каталог товаров</a> 
+        {% FOR upper_navigation %}
+          {% IF upper_navigation.CURRENT %} &gt; <strong>{upper_navigation.NAME}</strong>{% ELSEIF upper_navigation.CURRENT_PARENT %} &gt; <a href="{upper_navigation.URL}" >{upper_navigation.NAME}</a>{% ENDIF %}
+        {% ENDFOR %}
+      {% ENDIF %}
+</p>
+
+<h1>{CATEGORY_NAME}</h1>
+
+<!-- Короткое SEO описание категории -->
+{CATEGORY_SEO_DESCRIPTION_SHORT}
+
+<table>
+  
+  <!-- Фильтры показываются только если есть товары в категории -->
+  {% IFNOT goods_empty %}
+    <!-- Дополнительная навигация для работы со списком товаров -->
+    <tr>
+      <!-- Блок выбора параметра по которому производится сортировка списка товаров и возможность изменения лимитов выдачи -->
+      <td>
+        <form action="">
+          <div>
+            <!-- Список фильтров, которые сейчас действуют на результаты поиска -->
+            {% FOR goods_filters %}
+              <input type="hidden" name="{goods_filters.NAME}" value="{goods_filters.VALUE}" />
+            {% ENDFOR %}
+    
+            <!-- Поле выбора сортировки -->
+            {% IF goods_show_order_fields %}
+              Сортировать по:
+              <select name="goods_search_field_id" onchange="this.form.submit();">
+                {% FOR goods_order_fields %}
+                  <option value="{goods_order_fields.ID}" {% IF goods_order_fields.SELECTED %}selected="selected"{% ENDIF %}>{goods_order_fields.NAME}</option>
+                {% ENDFOR %}
+              </select>
+            {% ENDIF %}
+            
+            <!-- Поле выбора лимитов -->
+            {% IF goods_show_per_page %}
+              Показывать по:
+              <select name="per_page" onchange="this.form.submit();">
+                {% FOR goods_per_page_list %}
+                  <option value="{goods_per_page_list.LIMIT}" {% IF goods_per_page_list.SELECTED %}selected="selected"{% ENDIF %}>{goods_per_page_list.LIMIT}</option>
+                {% ENDFOR %}
+              </select>
+            {% ENDIF %}
+          </div>
+        </form>
+      </td>
+      <!-- END Блок выбора параметра по которому производится сортировка списка товаров -->
+      
+      <!-- Страницы -->
+      <td class="alignRight">
+        <div>
+          {% IF show_pages %}
+          <div class="square_pages">
+            <span>Страницы: </span>
+              {% FOR goods_pages %}
+                {% IF goods_pages.CURRENT %}
+                  <b>{goods_pages.PAGE}</b>
+                {% ELSE %}
+                  <a href="{GOODS_PAGINATE_URL}&page={goods_pages.PAGE}">{goods_pages.PAGE}</a>
+                {% ENDIF %}
+              {% ENDFOR %}
+          </div>
+          {% ENDIF %}
+        </div>
+      </td>
+      <!-- END Страницы -->
+    </tr>
+    <!-- END Дополнительная навигация для работы со списком товаров -->
+  {% ENDIF %}
+  <!-- END Фильтры показываются только если есть товары в категории -->
+  
+  <!-- Список товаров -->
+  <tr>
+    <td colspan="2">
+      <table style="padding:0px;margin:0px;">
+        <tr>
+          
+          <!-- Если список товаров пуст -->
+          {% IF goods_empty %}
+            <td>
+              <!-- Если не применено ни одного фильтра, значит в категории нет товаров -->
+              {% IF goods_filters_empty %}
+               
+                <!-- Если в категории нет товаров, но есть категории, то отобразим их -->
+                {%IFNOT nested_categories_list_empty %}
+          
+                  <!-- Блок навигации по категориям, вложенным в текущую категорию -->
+                  <ul class="content_catalog_nested_categories">
+                    {% FOR nested_categories_list %}
+                      <li>
+                        <div class="withBorder cornerAll" style="padding:1em">
+                          <div><a href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;"><img {% IF nested_categories_list.IMAGE_EMPTY %}src="{ASSETS_IMAGES_PATH}no-photo-small.png"{% ELSE %}src="{nested_categories_list.IMAGE_MEDIUM}"{% ENDIF %} alt="{nested_categories_list.NAME}" /></a></div>
+                          <a href="{nested_categories_list.URL}" title="Перейти к категории &laquo;{nested_categories_list.NAME}&raquo;">{nested_categories_list.NAME}</a>
+                        </div>
+                      </li>
+                    {% ENDFOR %}
+                  </ul>
+                  <br clear="all"/>
+
+                <!-- Если в категории нет ни товаров, ни категорий то сообщим пользователю что ничего нет -->
+                {% ELSE %}
+                 <h3>Нет товаров в категории</h3>
+                {% ENDIF %}
+          
+              <!-- Если производили фильтрацию товаров в категории -->
+              {% ELSE %}
+                <h3>Нет товаров для выбранных условий</h3>
+              {% ENDIF %}
+            </td>
+
+          <!-- Если есть товары -->
+          {% ELSE %}
+            {% FOR goods %}
+          		<td class="goodsListItem">  
+                <div class="goodsListItemBlock withBorder cornerAll">
+          		    <div class="goodsListItemImage"><a href="{goods.URL}"><img src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-small.png{% ELSE %}{goods.IMAGE_SMALL}{% ENDIF %}" alt="{goods.NAME}" /></a></div>
+          		    <h3 class="goodsListItemName"><a href="{goods.URL}">{goods.NAME}</a></h3>
+          		    <div class="goodsListItemPriceNew">
+            		    <a href="{goods.URL_MIN_PRICE_NOW}">{goods.MIN_PRICE_NOW | money_format}</a>
+            		  </div>  
+            		  <div class="goodsListItemPriceOld">
+          		      {% IF goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>goods.MIN_PRICE_NOW %}
+                      <a href="{goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
+                    {% ELSEIF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW %}
+                      <a href="{goods.URL_MIN_PRICE_OLD}" class="lineThrough">{goods.MIN_PRICE_OLD | money_format}</a>
+                    {% ENDIF %}
+          		    </div>
+                </div>
+              </td>
+          		{goods.index | is_divided("4","</tr><tr>","")}
+          	{% ENDFOR goods %}
+        	{% ENDIF %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- END Список товаров -->
+  
+  <!-- Подвал таблицы со списком товаров -->
+  <tr>
+    <!-- Страницы -->
+    <td colspan="2" class="alignRight">
+      <div>
+        {% IF show_pages %}
+        <div class="square_pages">
+          <span>Страницы: </span>
+            {% FOR goods_pages %}
+              {% IF goods_pages.CURRENT %}
+                <b>{goods_pages.PAGE}</b>
+              {% ELSE %}
+                <a href="{GOODS_PAGINATE_URL}&page={goods_pages.PAGE}">{goods_pages.PAGE}</a>
+              {% ENDIF %}
+            {% ENDFOR %}
+        </div>
+        {% ENDIF %}
+      </div>
+    </td>
+    <!-- END Страницы -->
+  </tr>
+  <!-- END Подвал таблицы со списком товаров -->
+
+</table>
+
+<!-- Описание категории -->
+<div class="htmlDataBlock">
+  {CATEGORY_DESCRIPTION}
+</div>
+
+<!-- Полное SEO описание категории -->
+<div class="htmlDataBlock">
+  {CATEGORY_SEO_DESCRIPTION_LARGE}
+</div>

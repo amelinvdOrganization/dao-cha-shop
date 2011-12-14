@@ -1,0 +1,48 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Акции магазина</strong></p>
+
+<h1>Акции магазина</h1>
+
+<!-- promotion campaign list -->
+{% IF promotion_campaign_empty %}
+    <h3 class="promotionCampaignHeader">Акций в нашем магазине пока нет</h3>
+{% ELSE %}
+  {% FOR promotion_campaign %}
+    <div class="listing">
+      <div class="container">
+        <h3 class="promotionCampaignHeader"><a href="{promotion_campaign.URL}">{promotion_campaign.NAME}</a></h3>
+        <p>
+          <table class="promotionCampaignInfo">
+            <tr>
+              <td class="cell1"><p><span>Сроки проведения акции:</span></p></td>
+              <td class="cell2">{promotion_campaign.BEGINNING_TIME | date("d.m.Y")} - {promotion_campaign.EXPIRED_TIME | date("d.m.Y")}</td>
+            </tr>
+            <tr>
+              <td class="cell1"><p><span>Размер скидки:</span></p></td>
+              <td class="cell2">{promotion_campaign.PERCENTAGE} %</td>
+            </tr>
+           </table>
+           <p>{promotion_campaign.DESCRIPTION_SHORT | nl2br}</p>
+           <a title="{promotion_campaign.NAME}" href="{promotion_campaign.URL}">Подробнее...</a>
+		    </p>
+		      
+      </div>
+      <div class="clr"></div>
+    </div>
+  {% ENDFOR promotion_campaign %}
+{% ENDIF %}       
+<!-- end promotion campaign list -->
+
+<!-- Pages -->
+{% IF show_pages %}
+<div class="pagination">
+  <span class="pp-title">Страницы:</span>
+  {% FOR promotion_campaign_pages %}
+    {% IF promotion_campaign_pages.CURRENT %}
+      <span class="pp-page pp-current">{promotion_campaign_pages.PAGE}</span>
+    {% ELSE %}
+      <a class="pp-page" href="?page={promotion_campaign_pages.PAGE}">{promotion_campaign_pages.PAGE}</a>
+    {% ENDIF %}
+  {% ENDFOR %}
+</div>
+{% ENDIF %}
+<!-- end Pages -->

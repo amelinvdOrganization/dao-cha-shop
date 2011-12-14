@@ -1,0 +1,32 @@
+<div class="alignCenter">
+  {% IF FORM_NOTICE %}<h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}errorMessage{% ENDIF %}">{FORM_NOTICE | nl2br}</h3>{% ENDIF %}
+  <p>Сейчас в корзине товаров 
+  <strong class="newCartCount">
+    {% IF cart_count_empty %}
+      <span class="red">0</span> шт.
+    {% ELSE %}
+      {% FOR cart_count %}
+        {cart_count.COUNT}{cart_count.MEASURE_NAME}{% IFNOT cart_count.last %},{% ENDIF %}
+      {% ENDFOR %}
+    {% ENDIF %}
+  </strong>
+  на сумму 
+  <strong class="newCartSum">
+    {% IF cart_count_empty %}
+      <span class="red">0</span> {CURRENCY_NAME}
+    {% ELSE %}
+      {% FOR cart_sum %}
+        {cart_sum.NOW | money_format}<br />
+      {% ENDFOR %}
+    {% ENDIF %}
+  </strong>
+  </p>
+  <p>Вы можете перейти к оформлению заказа или продолжить покупки.</p>
+  <p><a class="messageBoxToCart" href="{CART_URL}">Перейти в корзину</a> &nbsp; &nbsp; <a class="nyroModalClose" href="#">Продолжить покупки</a></p>
+</div>
+
+<!-- Обновление данных корзины -->
+<script>
+$('#cartSum').html($('.newCartSum').html());
+$('#cartCount').html($('.newCartCount').html());
+</script>

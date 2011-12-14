@@ -1,0 +1,63 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Регистрация</strong></p>
+<h1>Регистрация</h1>
+
+<!-- Контент -->
+<form action="{USER_REGISTER_URL}" method="post" class="clientForm">
+  <div>
+    <input type="hidden" name="hash" value="{HASH}" />
+    <input type="hidden" name="from" value="{FROM}" />
+
+    {% IF FORM_NOTICE %}
+      <h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}red{% ENDIF %}">{FORM_NOTICE}</h3>
+    {% ENDIF %}
+
+    <table>
+
+      <!-- Тело таблицы. Форма регистрации -->
+      <tbody>
+        <tr>
+          <td class="ceil1"><label for="reg_name">Представьтесь, пожалуйста</label></td>
+          <td class="ceil2"><input id="reg_name" name="form[sites_client_name]"  value="{FORM_SITES_CLIENT_NAME}" maxlength="100" class="required cornerAll"/></td>
+          <td class="ceil3 valignMiddle" rowspan="4">
+            <div class="alignCenter" style="display:none;" id="caps_lock"> 
+            	<img src="{ASSETS_IMAGES_PATH}warningCapslock.png"><br />
+            	<strong>Caps Lock включен.</strong><br />
+            	Пароль может быть введен неверно.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="sites_client_phone">Телефон для связи</label></td>
+          <td><input id="sites_client_phone" name="form[sites_client_phone]"  value="{FORM_SITES_CLIENT_PHONE}" maxlength="255" class="required cornerAll"/></td>
+        </tr>
+        <tr>
+          <td><label for="sites_client_mail">Укажите Email</label></td>
+          <td><input id="sites_client_mail" name="form[sites_client_mail]"  value="{FORM_SITES_CLIENT_MAIL}" maxlength="255" class="required email cornerAll"/></td>
+        </tr>
+        <tr>
+          <td><label for="sites_client_pass">Придумайте пароль</label></td>
+          <td>
+            <input id="sites_client_pass" type="password" name="form[sites_client_pass]" value="{FORM_SITES_CLIENT_PASS}" maxlength="50" minlength="6" class="required cornerAll" /><br />
+            {% IFNOT user_agent_ie %}
+            <div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
+            {% ENDIF %}
+          </td>
+        </tr>
+      </tbody>
+
+      <!-- Низ таблицы. Кнопка отправки формы -->
+      <tfoot>
+        <tr>
+          <td colspan="3"><input type="submit" value="Зарегистрироваться" /></td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <a href="{USER_LOGIN_URL}">Вход с паролем</a> | <a href="{USER_RECOVERY_URL}">Восстановление пароля</a>
+          </td>
+        </tr>
+      </tfoot>
+
+    </table>
+  </div>
+</form>
+<!-- end Контент -->

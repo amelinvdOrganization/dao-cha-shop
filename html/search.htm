@@ -1,0 +1,116 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> 
+  &gt; <strong>Результат поиска по запросу: &laquo;{SEARCH_QUERY}&raquo;</strong>
+</p>
+
+<h1>Результат поиска по запросу: &laquo;{SEARCH_QUERY}&raquo;</h1>
+
+<table>
+  
+  <!-- Дополнительная навигация для работы со списком товаров -->
+  <tr>
+    <!-- Блок выбора параметра по которому производится сортировка списка товаров и возможность изменения лимитов выдачи -->
+    <td>
+      <form action="">
+        <div>
+          <!-- Поисковый запрос -->
+          <input type="hidden" name="q" value="{SEARCH_QUERY}" />
+                  
+          <!-- Поле выбора лимитов -->
+          {% IF goods_show_per_page %}
+            Показывать по:
+            <select name="per_page" onchange="this.form.submit();">
+              {% FOR goods_per_page_list %}
+                <option value="{goods_per_page_list.LIMIT}" {% IF goods_per_page_list.SELECTED %}selected="selected"{% ENDIF %}>{goods_per_page_list.LIMIT}</option>
+              {% ENDFOR %}
+            </select>
+          {% ENDIF %}
+        </div>
+      </form>
+    </td>
+    <!-- END Блок выбора параметра по которому производится сортировка списка товаров -->
+    
+    <!-- Страницы -->
+    <td class="alignRight">
+      <div>
+        {% IF show_pages %}
+        <div class="square_pages">
+          <span>Страницы: </span>
+            {% FOR goods_pages %}
+              {% IF goods_pages.CURRENT %}
+                <b>{goods_pages.PAGE}</b>
+              {% ELSE %}
+                <a href="{GOODS_PAGINATE_URL}&amp;page={goods_pages.PAGE}">{goods_pages.PAGE}</a>
+              {% ENDIF %}
+            {% ENDFOR %}
+        </div>
+        {% ENDIF %}
+      </div>
+    </td>
+    <!-- END Страницы -->
+  </tr>
+  <!-- END Дополнительная навигация для работы со списком товаров -->
+  
+  <!-- Список товаров -->
+  <tr>
+    <td colspan="2">
+      <table>
+        <tr>
+          
+          <!-- Если список товаров пуст -->
+          {% IF goods_empty %}
+            <td><h3>К сожалению, по Вашему запросу ничего не найдено</h3></td>
+          <!-- Если ничего и не искали -->
+          {% ELSEIF search_query_empty %}
+            <td><h3>Пустой запрос</h3></td>
+          <!-- Если есть товары -->
+          {% ELSE %}
+            {% FOR goods %}
+          		<td class="goodsListItem">  
+                <div class="goodsListItemBlock withBorder cornerAll">
+          		    <div class="goodsListItemImage"><a href="{goods.URL}"><img src="{% IF goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-small.png{% ELSE %}{goods.IMAGE_SMALL}{% ENDIF %}" alt="{goods.NAME}" /></a></div>
+          		    <h3 class="goodsListItemName"><a href="{goods.URL}">{goods.NAME}</a></h3>
+          		    <div class="goodsListItemPriceNew">
+            		    <a href="{goods.URL_MIN_PRICE_NOW}">{goods.MIN_PRICE_NOW | money_format}</a>
+            		  </div>  
+            		  <div class="goodsListItemPriceOld">
+          		      {% IF goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>goods.MIN_PRICE_NOW %}
+                      <a href="{goods.URL_MIN_PRICE_NOW_WITHOUT_DISCOUNT}" class="lineThrough">{goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</a>
+                    {% ELSEIF goods.MIN_PRICE_OLD>goods.MIN_PRICE_NOW %}
+                      <a href="{goods.URL_MIN_PRICE_OLD}" class="lineThrough">{goods.MIN_PRICE_OLD | money_format}</a>
+                    {% ENDIF %}
+          		    </div>
+                </div>
+              </td>
+          		{goods.index | is_divided("4","</tr><tr>","")}
+          	{% ENDFOR goods %}
+        	{% ENDIF %}
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- END Список товаров -->
+  
+  <!-- Подвал таблицы со списком товаров -->
+  <tr>
+    <!-- Страницы -->
+    <td colspan="2" class="alignRight">
+      <div>
+        {% IF show_pages %}
+        <div class="square_pages">
+          <span>Страницы: </span>
+            {% FOR goods_pages %}
+              {% IF goods_pages.CURRENT %}
+                <b>{goods_pages.PAGE}</b>
+              {% ELSE %}
+                <a href="{GOODS_PAGINATE_URL}&amp;page={goods_pages.PAGE}">{goods_pages.PAGE}</a>
+              {% ENDIF %}
+            {% ENDFOR %}
+        </div>
+        {% ENDIF %}
+      </div>
+    </td>
+    <!-- END Страницы -->
+  </tr>
+  <!-- END Подвал таблицы со списком товаров -->
+
+</table>

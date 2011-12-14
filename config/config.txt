@@ -1,0 +1,7 @@
+goods_images_size_icon=40
+goods_images_size_small=100
+goods_images_size_medium=280
+goods_images_size_large=1000
+goods_images_size_other=185
+goods_images_size_cat_icon=30
+goods_images_size_cat_catalog=0

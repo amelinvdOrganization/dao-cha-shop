@@ -1,0 +1,86 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>Корзина</strong></p>
+
+<form action="{CART_URL}" method="post" class="cartForm">
+  <div>
+    {% IF FORM_NOTICE %}<h3 class="{% IF FORM_NOTICE_IS_GOOD %}green{% ELSE %}errorMessage{% ENDIF %}">{FORM_NOTICE | nl2br}</h3>{% ENDIF %}
+  
+    {% IF cart_items_empty %}
+      <div class="cartFormEmpty">
+        <h1>Ваша корзина пуста</h1>
+        Предлагаем выбрать нужный Вам товар из <a href="{CATALOG_URL}">каталога</a>.
+      </div>
+    {% ELSE %}
+        <input type="hidden" name="hash" value="{HASH}" />
+        <table class="cartFormTable">
+          <thead class="cartFormThead">
+            <tr>
+              <th colspan="2">Наименование</th>
+              <th>Кол-во</th>
+              <th>Цена</th>
+              <th>Общая сумма</th>
+              <th>Удалить</th>
+            </tr>
+          </thead>
+          <tbody class="cartFormTbody">
+            {% FOR cart_items %}
+            <tr>
+              <td class="cell1">
+                <a href="{cart_items.GOODS_URL}"><img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}"></a>
+              </td>
+              <td class="cell2">
+                <a href="{cart_items.GOODS_URL}" class="cartFormTbodyHeader">
+                  {cart_items.GOODS_NAME}
+                  
+                  <!-- Если у товара есть отличительные свойства для модификации товара, допишем их к названию товара -->
+                  {% IFNOT cart_items.DISTINCTIVE_PROPERTIES_EMPTY %}<span>({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</span>{% ENDIF %}
+                </a>
+
+                <!-- Путь к категории, из которой заказали товара -->
+                <div class="cartFormTbodyNavigate">
+                  <a href="http://{NET_DOMAIN}/">Главная</a> 
+                    {% FOR catalog_path %}
+                         &raquo; <a href="{cart_items.catalog_path.URL}" >{cart_items.catalog_path.NAME}</a>
+                    {% ENDFOR %}
+                </div>
+                
+              </td>
+              <td class="cell3">
+                <input name="form[quantity][{cart_items.GOODS_MOD_ID}]" value="{cart_items.ORDER_LINE_QUANTITY}" /> {cart_items.GOODS_MOD_MEASURE_NAME}
+              </td>
+              <td class="cell4 num">
+                {cart_items.GOODS_MOD_PRICE_NOW | money_format}
+              </td>
+              <td class="cell5 num">
+                {cart_items.ORDER_LINE_PRICE_NOW | money_format}
+              </td>
+              <td class="cell6">
+                <a href="{cart_items.ORDER_LINE_DELETE_URL}"><img src="{ASSETS_IMAGES_PATH}cartDelete.png" /></a>
+              </td>
+            </tr>
+            {% ENDFOR %}
+          </tbody>
+          <tfoot class="cartFormTfoot">
+            <tr>
+              <td colspan="2" class="cartFormTfootTruncate"><a href="{CART_TRUNCATE_URL}" onclick="return confirm('Вы действительно хотите удалить все товары из корзины?')">Очистить корзину</a></td>
+              <td colspan="4" class="cartFormTfootSum">
+                <table class="cartFormTfootSumTable">
+                  <tr>
+                    <td class="cell1">Итого:</td>
+                    <td class="cell2">
+                      {% FOR cart_sum %}
+                        {cart_sum.NOW | money_format}<br />
+                      {% ENDFOR %}
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6" class="cartFormTfootButtons"><input type="submit" value="Пересчитать"> <input type="submit" name="next_step" value="Оформить заказ"></td>
+            </tr>
+          </tfoot>
+        </table>
+        
+    {% ENDIF %}
+  </div>
+</form>

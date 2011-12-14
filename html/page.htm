@@ -1,0 +1,23 @@
+<p id="breadcrumb">Вы здесь: <a href="http://{NET_DOMAIN}/">Главная</a> &gt; <strong>{PAGE_NAME}</strong></p>
+<h1>{PAGE_NAME}</h1>
+
+<!-- Контент страницы -->
+<div class="htmlDataBlock">
+  {PAGE_CONTENT}
+</div>
+
+<!-- Короткое SEO-описание -->
+{% IF PAGE_SEO_DESCRIPTION_SHORT %}
+  <div style="padding-top:1em;">
+    {PAGE_SEO_DESCRIPTION_SHORT}
+  </div>
+{% ENDIF %}
+<!-- END Короткое SEO-описание -->
+
+<!-- Полное SEO-описание -->
+{% IF PAGE_SEO_DESCRIPTION_LARGE %}
+  <div style="padding-top:1em;" class="htmlDataBlock">
+    {PAGE_SEO_DESCRIPTION_LARGE}
+  </div>
+{% ENDIF %}
+<!-- END Полное SEO-описание -->
