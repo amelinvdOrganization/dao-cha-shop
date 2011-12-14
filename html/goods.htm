@@ -80,43 +80,49 @@
                 <!-- Блок с данными товара при выбранных параметрах. Берутся из модификаций товара -->
                 <tr>
                   <td class="goodsDataMainModificationDataBlock">
-                    <!-- По этому значению производится заказ товара -->
-                    <input type="hidden" name="form[goods_mod_id]" value="{GOODS_MOD_ID}" class="goodsDataMainModificationId" />
-                    
-                    <!-- Цена сейчас --> 
-                    <span class="goodsDataMainModificationPriceNow" title="Цена сейчас">
-                       {GOODS_MOD_PRICE_NOW | money_format}
-                    </span>
-                    
-                    <!-- Старая цена --> 
-                    <span class="goodsDataMainModificationPriceOld lineThrough" title="Старая цена">
-                      <!-- Если на товар действует скидка --> 
-                      {% IF GOODS_MOD_PRICE_NOW_WITHOUT_DISCOUNT>GOODS_MOD_PRICE_NOW %}
-                        {GOODS_MOD_PRICE_NOW_WITHOUT_DISCOUNT | money_format}
-                      <!-- Если старая цена была больше новой --> 
-                      {% ELSEIF GOODS_MOD_PRICE_OLD>GOODS_MOD_PRICE_NOW %}
-                        {GOODS_MOD_PRICE_OLD | money_format}
-                      {% ENDIF %}
-                    </span>
-          
-                    <!-- Доступность товара --> 
-                    <div class="goodsDataMainModificationAvailable">
-                      <div rel="true" class="available-true" {% IF GOODS_MOD_REST_VALUE=0 %}style="display:none;"{% ENDIF %}>Товар есть в наличии</div>
-                      <div rel="false" class="available-false" {% IF GOODS_MOD_REST_VALUE>0 %}style="display:none;"{% ENDIF %}>Товара нет в наличии</div>
-                    </div>
-                  </td>
-                  <td class="goodsDataFormSubmitButton">
-
-                    <!-- Если в тарифном плане подключен модуль сравнения товаров -->
-                    {% IF TARIFF_FEATURE_GOODS_COMPARE %}
-                      <!-- Если не выключен модуль сравнения товаров, то покажем кнопку сравнения товаров -->
-                      {% IFNOT SETTINGS_COMPARE_DISABLE %}
-                        <input type="button" class="button goodsDataCompareButton add"  rel="{COMPARE_ADD_URL}?return_to={CURRENT_URL | urlencode}" value="Добавить к сравнению" title="Добавить товарную модификацию к списку сравнения с другими товарами" style="{% IF GOODS_MOD_IS_HAS_IN_COMPARE_LIST %}display:none;{% ENDIF %}width:200px;" />
-                        <input type="button" class="button goodsDataCompareButton delete" rel="{COMPARE_DELETE_URL}?return_to={CURRENT_URL | urlencode}" value="Убрать из сравнения" title="Убрать товарную модификацию из списка сравнения с другими товарами" style="{% IFNOT GOODS_MOD_IS_HAS_IN_COMPARE_LIST %}display:none;{% ENDIF %}width:200px;" />
-                      {% ENDIF %}
-                    {% ENDIF %}
-
-                    <input type="submit" value="Положить в корзину" style="display:block;margin-top:1em;width:200px;" />
+                    <table>
+                      <tr>
+                        <td class="goodsDataMainModificationDataBlock">
+                          <!-- По этому значению производится заказ товара -->
+                          <input type="hidden" name="form[goods_mod_id]" value="{GOODS_MOD_ID}" class="goodsDataMainModificationId" />
+                          
+                          <!-- Цена сейчас --> 
+                          <span class="goodsDataMainModificationPriceNow" title="Цена сейчас">
+                             {GOODS_MOD_PRICE_NOW | money_format}
+                          </span>
+                          
+                          <!-- Старая цена --> 
+                          <span class="goodsDataMainModificationPriceOld lineThrough" title="Старая цена">
+                            <!-- Если на товар действует скидка --> 
+                            {% IF GOODS_MOD_PRICE_NOW_WITHOUT_DISCOUNT>GOODS_MOD_PRICE_NOW %}
+                              {GOODS_MOD_PRICE_NOW_WITHOUT_DISCOUNT | money_format}
+                            <!-- Если старая цена была больше новой --> 
+                            {% ELSEIF GOODS_MOD_PRICE_OLD>GOODS_MOD_PRICE_NOW %}
+                              {GOODS_MOD_PRICE_OLD | money_format}
+                            {% ENDIF %}
+                          </span>
+                
+                          <!-- Доступность товара --> 
+                          <div class="goodsDataMainModificationAvailable">
+                            <div rel="true" class="available-true" {% IF GOODS_MOD_REST_VALUE=0 %}style="display:none;"{% ENDIF %}>Товар есть в наличии</div>
+                            <div rel="false" class="available-false" {% IF GOODS_MOD_REST_VALUE>0 %}style="display:none;"{% ENDIF %}>Товара нет в наличии</div>
+                          </div>
+                        </td>
+                        <td class="goodsDataFormSubmitButton">
+      
+                          <!-- Если в тарифном плане подключен модуль сравнения товаров -->
+                          {% IF TARIFF_FEATURE_GOODS_COMPARE %}
+                            <!-- Если не выключен модуль сравнения товаров, то покажем кнопку сравнения товаров -->
+                            {% IFNOT SETTINGS_COMPARE_DISABLE %}
+                              <input type="button" class="button goodsDataCompareButton add"  rel="{COMPARE_ADD_URL}?return_to={CURRENT_URL | urlencode}" value="Добавить к сравнению" title="Добавить товарную модификацию к списку сравнения с другими товарами" style="{% IF GOODS_MOD_IS_HAS_IN_COMPARE_LIST %}display:none;{% ENDIF %}width:200px;" />
+                              <input type="button" class="button goodsDataCompareButton delete" rel="{COMPARE_DELETE_URL}?return_to={CURRENT_URL | urlencode}" value="Убрать из сравнения" title="Убрать товарную модификацию из списка сравнения с другими товарами" style="{% IFNOT GOODS_MOD_IS_HAS_IN_COMPARE_LIST %}display:none;{% ENDIF %}width:200px;" />
+                            {% ENDIF %}
+                          {% ENDIF %}
+      
+                          <input type="submit" value="Положить в корзину" style="display:block;margin-top:1em;width:200px;" />
+                        </td>
+                      </tr>
+                    </table>
                   </td>
                 </tr>
     
@@ -192,8 +198,59 @@
                   </td>
                 </tr>
                 
-                <!-- Блок описания вариантов доставки -->
                 <tr>
+                  <td>
+                     <!-- Блок описания товара. Показываем его есть описание товара -->
+                    {% IF GOODS_DESCRIPTION_LARGE %}
+                      <!-- h3>Описание {GOODS_NAME}</h3 -->
+                      <div class="goodsDescriptionBlock">
+                        <div class="htmlDataBlock">
+                          {GOODS_DESCRIPTION_LARGE}
+                        </div>
+                      </div>
+                    {% ENDIF %}
+                    <!-- END Блок описания товара. Показываем его есть описание товара -->
+                    
+                    <!-- Короткое SEO-описание -->
+                    {% IF GOODS_SEO_DESCRIPTION_SHORT %}
+                      <div class="goodsDescriptionBlock">{GOODS_SEO_DESCRIPTION_SHORT}</div>
+                    {% ENDIF %}
+                    <!-- END Короткое SEO-описание -->
+                    
+                    <!-- Полное SEO-описание -->
+                    {% IF GOODS_SEO_DESCRIPTION_LARGE %}
+                      <div class="goodsDescriptionBlock">
+                        <div class="htmlDataBlock">
+                          {GOODS_SEO_DESCRIPTION_LARGE}
+                        </div>
+                      </div>
+                    {% ENDIF %}
+                    <!-- END Полное SEO-описание -->
+                    
+                    <!-- Блок характеристик товара. Показываем его если указаны характеристики -->
+                    {% IFNOT goods_features_empty %}
+                      <!-- h3>Характеристики {GOODS_NAME}</h3 -->
+                      
+                      <table class="goodsDataFeatures">
+                        <tr>
+                          {% FOR goods_features%}
+                            <td>
+                              <p><span>{goods_features.NAME}</span></p>
+                            </td>
+                            <td>
+                              {goods_features.VALUE}
+                            </td>
+                            {goods_features.index | is_divided("2","</tr><tr>","")}
+                          {% ENDFOR %}
+                        </tr>
+                      </table>
+                    {% ENDIF %}
+                    <!-- END Блок характеристик товара. Показываем его если указаны характеристики -->
+
+                  </td>
+                </tr>
+                <!-- Блок описания вариантов доставки -->
+                <!-- tr>
                   <td class="goodsDataMainDeliveryBlock" colspan="2">
                     <h4>Условия доставки</h4>
                     {% FOR goods_delivery %}
@@ -232,7 +289,7 @@
                         {% ENDIF %}
                       </div>
                     {% ENDFOR %}
-                  </td>
+                  </td -->
                 </tr>
               </table>
             </div>
@@ -241,53 +298,6 @@
       </table>
     </div>
   </form>
-  
-  <!-- Блок описания товара. Показываем его есть описание товара -->
-  {% IF GOODS_DESCRIPTION_LARGE %}
-    <!-- h3>Описание {GOODS_NAME}</h3 -->
-    <div class="goodsDescriptionBlock">
-      <div class="htmlDataBlock">
-        {GOODS_DESCRIPTION_LARGE}
-      </div>
-    </div>
-  {% ENDIF %}
-  <!-- END Блок описания товара. Показываем его есть описание товара -->
-  
-  <!-- Короткое SEO-описание -->
-  {% IF GOODS_SEO_DESCRIPTION_SHORT %}
-    <div class="goodsDescriptionBlock">{GOODS_SEO_DESCRIPTION_SHORT}</div>
-  {% ENDIF %}
-  <!-- END Короткое SEO-описание -->
-  
-  <!-- Полное SEO-описание -->
-  {% IF GOODS_SEO_DESCRIPTION_LARGE %}
-    <div class="goodsDescriptionBlock">
-      <div class="htmlDataBlock">
-        {GOODS_SEO_DESCRIPTION_LARGE}
-      </div>
-    </div>
-  {% ENDIF %}
-  <!-- END Полное SEO-описание -->
-  
-  <!-- Блок характеристик товара. Показываем его если указаны характеристики -->
-  {% IFNOT goods_features_empty %}
-    <!-- h3>Характеристики {GOODS_NAME}</h3 -->
-    
-    <table class="goodsDataFeatures">
-      <tr>
-        {% FOR goods_features%}
-          <td>
-            <p><span>{goods_features.NAME}</span></p>
-          </td>
-          <td>
-            {goods_features.VALUE}
-          </td>
-          {goods_features.index | is_divided("2","</tr><tr>","")}
-        {% ENDFOR %}
-      </tr>
-    </table>
-  {% ENDIF %}
-  <!-- END Блок характеристик товара. Показываем его если указаны характеристики -->
   
   <!-- Если в тарифном плане подключен модуль отзывов о товаре -->
   {% IF TARIFF_FEATURE_GOODS_OPINION %}
