@@ -23,8 +23,10 @@ input.invalidInput 		      {border:1px solid #b85454 !important;background-color
 
 /* END Глобальные классы, которые не нужно удалять */
 
+h1.pageHeader               {font-style: serif !important;}
+
 /* Классы шаблона */
-h1, h2, h3, h4, h5, h6      {margin-bottom: 0.2em;margin-top: 0.2em;font-weight: lighter;font-family:Helvetica;color:#636363;letter-spacing:0em;line-height: 1.1em;}
+h1, h2, h3, h4, h5, h6      {margin-bottom: 0.2em;margin-top: 0.2em;font-weight: lighter;font-family:serif;color:#636363;letter-spacing:0em;line-height: 1.1em;}
 h1                          {font-size: 2em;}
 h2                          {font-size: 1.8em;}
 h3                          {font-size: 1.6em;}
@@ -162,12 +164,16 @@ h6                          {font-size: 1.1em;}
 /* Страница категории. ячейки с товаром */
 .goodsListItem                      {vertical-align:top;width:200px;overflow:hidden;padding:0px;}   /* Размер в 200 пикселей сделан, чтобы и 2 и 5 товаров нормально смотрелись и была возможность увеличить разрешение до 1220 пикселей*/
 .goodsListItemBlock                 {height:200px;margin:5px;text-align:center;overflow:hidden;}
-.goodsListItemName                  {font-size:14px;text-align:center;max-height:3.8em;overflow:hidden;}
+.goodsListItemName                  {font-size:16px;text-align:center;max-height:3.8em;overflow:hidden;}
 .goodsListItemImage                 {height:100px;margin-top:  1em}
 .goodsListItemPrice                 {margin-top:10px;}
+div.goodsListItemPriceNew a              {color: #F2912D; font-size: 150%;}
 
 /* Страница категории. Текстовый блок*/
 .categoryDescriptionBlock           {margin:1em 0em 1em 0em;}
+
+/* Страница товара. Название товара  */
+.goodsName                          {color: #286DA2}
 
 /* Страница товара. Цена товара */
 .goodsDataMainModificationPriceOld {display:block;}
@@ -202,7 +208,7 @@ h6                          {font-size: 1.1em;}
 .goodsDataMainModificationPriceNow  {font-size:2.8em;color:#F2912D;white-space:nowrap;}
 
 /* Страница товара. Информация о заказе */
-.goodsDataMainOrder                 {border:1px solid #DCECF7}
+.goodsDataMainOrder                 {border:1px solid #DCECF7; width: 70%}
 .goodsDataMainModificationAvailable {white-space:nowrap;}
 
 /* Страница товара. Кнопка положить в корзину */
@@ -455,3 +461,13 @@ h6                          {font-size: 1.1em;}
 .htmlDataBlock ul {margin:10px 0 10px 2em !important;padding:0px !important;}
 .htmlDataBlock ol li {padding:0px !important;margin:3px 0px !important;list-style-type: decimal;}
 .htmlDataBlock ul li {padding:0px !important;margin:3px 0px !important;list-style-type: disc;}
+
+/* Отображение описания товара */
+.goodsDescriptionText {line-height: 160%}
+
+/* Название магазина  */
+.storyName {
+  font-family: serif;
+  font-size: 250%;
+  padding-left: 35px;
+}  
