@@ -56,6 +56,7 @@
 
   <!-- Скрипт для корректной работы A/B тестов -->
   <script type="text/javascript" src="http://cdn.abtest.ru/js/14723.js"></script>
+  <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
 </head>
 <body lang="ru">
   <div class="content">
@@ -63,8 +64,14 @@
       <thead>
         <tr>
           <td class="contentTableHeadMain" rowspan="2">
-            <!-- Название магазина -->
-            <h1 class="storyName"><a href="http://{NET_DOMAIN}/">{SETTINGS_STORE_NAME}</a></h1>  
+             <!-- Название магазина -->
+          <!-->  <h1 class="storyName"><a href="http://{NET_DOMAIN}/">{SETTINGS_STORE_NAME}</a></h1>  
+            -->
+            <h1 class="storyName">
+              <a href="http://dao-cha.storeland.ru/">
+                <img src="http://files.storeland.ru/web/upload/sitefiles/1/66/65244/%D0%B4%D0%B0%D0%BE.png"/>
+              </a>
+            </h1>
 
             <!-- Контакты магазина -->
             <table>
@@ -212,9 +219,9 @@
                         {catalog.NAME}
 
                         <!-- Отображение количества товаров в категории -->
-                        {% IF catalog.GOODS_COUNT>0 %}
+                        <!--{% IF catalog.GOODS_COUNT>0 %}
                          ({catalog.GOODS_COUNT})
-                        {% ENDIF %}
+                        {% ENDIF %} -->
                       </a>
                     {% IF catalog.ISSET_SUB=0 %}</li>{% ENDIF %}
                   {% IF catalog.LAST %}
@@ -479,9 +486,12 @@
               {% ENDFOR %}
             {% ENDFOR %}
             </div>
+            
             <div class="alignCenter">&copy; {DATE_YEAR} &mdash; &laquo;{SETTINGS_STORE_NAME}&raquo; {SETTINGS_STORE_REGION}</div>
             <div class="alignCenter">{SETTINGS_STORE_ORG_NAME}</div>            
-            <div class="alignCenter">{SETTINGS_STORE_HTML_CODE}</div>            
+            <div class="alignCenter">{SETTINGS_STORE_HTML_CODE}</div>  
+            <div class="yashare-auto-init alignCenter" data-yashareL10n="ru" data-yashareType="icon" 
+                data-yashareQuickServices="vkontakte,facebook,twitter" />
           </td>
         </tr>
       </tbody>
