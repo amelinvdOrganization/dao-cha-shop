@@ -1,6 +1,6 @@
 /* Глобальные классы, которые не нужно удалять */
 .valignMiddle               {vertical-align:middle !important;}
-.valignTop                  {vertical-align:top !important;}
+.valignTop                  {vertical-align:top !important; padding-right: 150px;}
 .alignCenter                {text-align:center !important;}
 .alignRight                 {text-align:right !important;}
 .underline                  {text-decoration:underline !important;}
@@ -331,7 +331,7 @@ div.goodsListItemPriceNew a              {color: #F2912D; font-size: 150%;}
 .orderDataTable p span             {border-bottom:1px solid #FFFFFF;background:#FFFFFF none repeat scroll 0 0;color:#666666;}
 
 /* Текстовая страница */
-.page                              {padding:1em;width:90%;border:1px solid #DCECF7;}
+.page                              {padding:1em;border:1px solid #DCECF7;margin-left: 5px;margin-right: 5px;}
 .page.noBorder                     {border:none;}
 .pageHeader                        {margin:0em 0em 1em 0em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
 .pageContent                       {margin:1em;}
