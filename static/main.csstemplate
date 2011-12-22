@@ -65,9 +65,9 @@ h6                          {font-size: 1.1em;}
 .content                            {max-width:1240px;min-width:1000px;margin:auto;border:1px solid #DCECF7;border-top:0px;}
 .contentTable                       {width:100%;}
 .contentTableHeadMain               {padding:0em 1em 1em 1em;width:220px;}
-.contentTableHeadMainPhone          {text-align:center;font-size:1.4em;padding:0px;}
-.contentTableHeadMainWorkTime       {text-align:center;color:#888;font-size:1.1em;}
-.contentTableHeadMainIcq            {padding-top:1em;}
+.contentTableHeadMainPhone          {text-align:center;font-size:1.4em;padding:2px 0px;}
+.contentTableHeadMainWorkTime       {text-align:center;color:#888;font-size:1.1em;padding:2px 0px;}
+.contentTableHeadMainIcq            {padding:1.3em 0em;}
 .contentTableHeadCart               {width:1%;vertical-align:middle;}
 .contentTableHeadCart td            {white-space:nowrap;}
 .contentTbodyCatalog                {width:220px;vertical-align:top;}
@@ -75,7 +75,7 @@ h6                          {font-size: 1.1em;}
 .contentTableHeadUserInfo           {text-align:center;width:220px;overflow:hidden;}
 
 /* Заголовки в блоке навигации слева */
-.contentTbodyCatalogHeader          {margin:0 1em 0.33em 1em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;}
+.contentTbodyCatalogHeader          {margin:0.66em 1em 0.66em 1em;padding-bottom:0.2em;background:url('{ASSETS_IMAGES_PATH}grey_dotted.gif') repeat-x scroll 0 100% transparent;text-align: center;}
 .contentTbodyCatalogHeader.noBorder {background-image:none;margin-bottom:0em;}
 .contentTbodyCatalogHeader a        {color:#636363}
 
@@ -94,6 +94,7 @@ h6                          {font-size: 1.1em;}
 
 /* Новости в блоке навигации слева */
 .contentTbodyNews {padding-left:1em;padding-right:1em;}
+.contentTbodyNewsBlockItemTitle {display: block; padding-bottom: 0.6em;}
 .contentTbodyNewsBlockItemTime {font-size:0.9em;color:#666;}
 .contentTbodyNewsBlockItem {margin-bottom:1em;margin-left:0.33em}
 
@@ -108,7 +109,7 @@ h6                          {font-size: 1.1em;}
 /* страница списка новостей */
 .newsListBlockItem {padding-bottom:1em;}
 .newsListBlockItemTitle {font-size:1.33em;}
-.newsListBlockItemPreview {margin:0.3em 0em 0em 0em;}
+.newsListBlockItemPreview {margin:0.3em 0em 0em 0em; line-height: 1.5em;}
 .newsListBlockItemTime {font-size:0.9em;color:#888;}
 
 /* Страница новости */

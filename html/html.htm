@@ -270,9 +270,12 @@
             <!-- END Если в тарифном плане подключен модуль фильтров по товарам -->
             
             <!-- Если в тарифном плане подключен модуль сравнения товаров -->
+            
+            
+            
             {% IF TARIFF_FEATURE_GOODS_COMPARE %}
               <!-- Если не выключен модуль сравнения товаров, то покажем этот блок -->
-              {% IFNOT SETTINGS_COMPARE_DISABLE %}
+            <!--  {% IFNOT SETTINGS_COMPARE_DISABLE %}
                 <br /><h4 class="contentTbodyCatalogHeader"><a href="{COMPARE_URL}">Сравнение товаров</a></h4>
                 <div class="contentTbodyCompare">
                   {%IF COMPARE_GOODS_COUNT=0 %}
@@ -282,8 +285,10 @@
                     <a class="contentTbodyCompareDetails" href="{COMPARE_URL}">Посмотреть</a>
                   {% ENDIF %}
                 </div>
-              {% ENDIF %}
+              {% ENDIF %} -->
             {% ENDIF %}
+          
+            
             <!-- END Если в тарифном плане подключен модуль фильтров по товарам -->
             
             <!-- Если в тарифном плане подключен модуль новостей -->
@@ -297,7 +302,8 @@
                   <div class="contentTbodyNewsBlock">
                     {% FOR news_list_all %}
                       <div class="contentTbodyNewsBlockItem"> 
-                        <a href="{news_list_all.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_all.TITLE}</a><br />
+                        <a href="{news_list_all.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_all.TITLE}</a>
+                        <br />
                         
                         <div class="newsListBlockItemPreview">{news_list_all.TEXT_SHORT} </div>
                         {% IF news_list_all.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_all.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
@@ -318,7 +324,8 @@
                   <div class="contentTbodyNewsBlock">
                     {% FOR news_list_shop %}
                       <div class="contentTbodyNewsBlockItem"> 
-                        <a href="{news_list_shop.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_shop.TITLE}</a><br />
+                        <a href="{news_list_shop.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_shop.TITLE}</a>
+                        <!-- <br /> -->
                         
                         <div class="newsListBlockItemPreview">{news_list_shop.TEXT_SHORT} </div>
                         {% IF news_list_shop.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_shop.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
@@ -339,15 +346,15 @@
                   <div class="contentTbodyNewsBlock">
                     {% FOR news_list_articles %}
                       <div class="contentTbodyNewsBlockItem"> 
-                        <a href="{news_list_articles.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_articles.TITLE}</a><br />
+                        <a href="{news_list_articles.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_articles.TITLE}</a><!-- br / -->
                         
                         <div class="newsListBlockItemPreview">{news_list_articles.TEXT_SHORT} </div>
-                        {% IF news_list_articles.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_articles.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
+                        {% IF news_list_articles.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_articles.TIME | date("d.m.Y")}</em><!-- br / -->{% ENDIF %}
                       </div>
                     {% ENDFOR %}
                   </div>
 
-                  <a href="{NEWS_ARTICLES_URL}">Архив статей</a>
+                 <!-- <a href="{NEWS_ARTICLES_URL}">Архив статей</a> -->
                 </div>
               {% ENDIF %}
               
@@ -360,10 +367,10 @@
                   <p class="contentTbodyNewsBlock">
                     {% FOR news_list_mass_media %}
                       <div class="contentTbodyNewsBlockItem"> 
-                        <a href="{news_list_mass_media.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_mass_media.TITLE}</a><br />
+                        <a href="{news_list_mass_media.URL}" class="contentTbodyNewsBlockItemTitle" title="Перейти к странице новости">{news_list_mass_media.TITLE}</a><!-- br / -->
                         
                         <div class="newsListBlockItemPreview">{news_list_mass_media.TEXT_SHORT} </div>
-                        {% IF news_list_mass_media.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_mass_media.TIME | date("d.m.Y")}</em><br />{% ENDIF %}
+                        {% IF news_list_mass_media.SHOW_TIME %}<em class="contentTbodyNewsBlockItemTime">{news_list_mass_media.TIME | date("d.m.Y")}</em><!-- br / -->{% ENDIF %}
                       </div>
                     {% ENDFOR %}
                   </p>
